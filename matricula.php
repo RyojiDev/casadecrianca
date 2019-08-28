@@ -120,71 +120,76 @@
      
        
          
-          <form name="matricula_form" id="matricula_form" method="get">
-              <div class="form-row">
-                                  <div class="form-group col-4">
-                    <label for="cpf">Cpf</label>
-                    <input type="text" class="form-control" name="cpf" id="cpf" required="required" maxlength="11"
-                        size="8">
-                </div>
-                <!--div cpf -->
-                
+     <div class="container">
+    <form name="matricula_form" id="matricula_form" method="get">
+        <div class="row">
+            <div class="form-group col-4">
+                <label for="cpf">CPF</label>
+                <input type="number" class="form-control" name="cpf" id="cpf" required="required" maxlength="11" size="8">
+            </div>
+            <!-- div cpf -->
+            
+    
+            <div class="form-group col-6">
+                <label for="Nome">Nome</label>
+                <input class="form-control" type="text" name="nome" id="nome" required="required">
+            </div>
+            <!-- div nome -->
+            
+            <div class="form-group col-2">
+                <label for="Sexo">Sexo</label>
+                <select class="form-control" name="sexo" id="sexo">
+                    <option value=""></option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                </select>
+            </div>
+            <!--div select Sexo-->
 
-                <div class="form-group col-6">
-                    <label for="Nome">Nome</label>
-                    <input class="form-control" type="text" name="nome" id="nome" required="required">
-                </div>
-                <!--div nome-->
-               
-                <div class="form-group col-2">
-                    <label for="Sexo">sexo</label>
-                    <select class="form-control form-control-sm" name="sexo" id="sexo">
-                        <option value=""></option>
-                        <option value="M">Masculino</option>
-                        <option value="F">Feminino</option>
-                    </select>
-                </div>
-                
-                <!--div select Sexo-->
-                </div><!--- div form row cpf -->
-
-                    <div class="form-row">
-            <div class="form-group col-md-2 ">
-            <label for="nascimento">Nascimento</label>
-                    <input class="input-group date" type="text" id="nascimento" name="nascimento"
-                        required="required" onkeyup="MascaraData(this.id)">
-                </div>
-                <!--div nascimento-->
-                
-                
-                <div class="form-group col-2">
-                    <label for="turno">Turno</label>
-                    <select class="" name="turno" id="turno" onchange="atualizarSeries()">
-                        <option value=""></option>
-                        <?php
-                            $sql_turno = "SELECT DISTINCT turno FROM casaserie";
-                            $sql_turno = $conn->query( $sql_turno );
-                            $result_turno = $sql_turno->fetchAll();
-                            foreach ($result_turno as $campo)
-                            {
-                                echo '<option value='.$campo['turno'].'>'.turno($campo['turno']).'</option>';
-                            }
-                        ?>
-                    </select>
-                   
-                </div>
-                <!--- div turno -->
-
-                
-                <div class="form-group col-4">
+        </div><!--- div row -->
+    
+        <div class="row">
+            <div class="form-group col-2">
+                <label for="nascimento">Nascimento</label>
+                <input class="form-control" type="text" id="nascimento" name="nascimento" required="required" onkeyup="MascaraData(this.id)">
+            </div>
+            <!-- div nascimento -->
+            
+            <div class="form-group col-2">
+                <label for="turno">Turno</label>
+                <select class="form-control" name="turno" id="turno" onchange="atualizarSeries()">
+                    <option value=""></option>
+                    <?php
+                        $sql_turno = "SELECT DISTINCT turno FROM casaserie";
+                        $sql_turno = $conn->query( $sql_turno );
+                        $result_turno = $sql_turno->fetchAll();
+                        foreach ($result_turno as $campo)
+                        {
+                            echo '<option value='.$campo['turno'].'>'.turno($campo['turno']).'</option>';
+                        }
+                    ?>
+                </select>
+            </div>
+            <!--- div turno -->
+    
+            <div class="form-group col-2">
                 <label for="serie">Serie</label>
-                 <input type="text" name="serie" id="serie" required="required" disabled>
-                 
+                <input type="text" name="serie" id="serie" class="form-control" required="required"  disabled>   
+            </div>
+
+        </div><!---- div row nascimento -->
+
+        <div class="row">
+            <div class="form-group col-2">
                 <input type="button" class="btn btn-primary" onclick="Enviar();" value="Adicionar" />
-                </div>
-                </div><!---- div row nascimento -->
-                
-            </form>
+            </div>
+        </div>
+                    
+    </form>
+
+    <!-- matricula_form -->
+</div> <!-- container -->
+
          
           <?php  echo '<br> Faixa de Datas:<br>';
         foreach ($casaserie as $campo)
