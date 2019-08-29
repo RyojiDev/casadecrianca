@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+#carregando {
+    display: none;
+}
+
 body {
     background-image: url("../img/big_bg.png");
     background-size: 100%;
@@ -20,6 +24,7 @@ header {
     margin-top: -45px;
     display: block;
     margin-left: -80px;
+    padding: 5px;
 }
 
 .titulo {

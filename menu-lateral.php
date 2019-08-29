@@ -10,7 +10,7 @@
 </div>
 
     <div id = "divTitulo">
-<h5 id = "iconeTitulo"><p>Pré-Matricula de Novatos para 2020</p></h5>
+<h5 id = "iconeTitulo"></h5>
     </div>
 <div class = "container" id ="divmenu">
 <ul id = "navmenu" class="nav flex-column" >

@@ -81,6 +81,7 @@
          
 	</head>
 	<body>
+        <div id="carregando">
     <div id="content">
         <div id="inner-content">
         <?php include ('menu-lateral.php') ?>
@@ -234,5 +235,6 @@
 
 <!--- importa todas as classes js, para serem carregados em todas as paginas, é só digitar esse comando -->
 <?php include("import.phtml"); ?>
+</div>
 	</body>
 </html>
