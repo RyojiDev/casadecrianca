@@ -7,7 +7,7 @@
 		<link rel="icon" href="favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
-	<?php	include ('import.php'); ?>
+	<?php	include ('import_css.phtml'); ?>
 
 	</head>
 	<body>
@@ -49,7 +49,7 @@
 			</form>
 		</div>
 
-		<script src="js/principal.js"></script>
-
+		
+<?php include("import.phtml"); ?>
 	</body>
 </html>
