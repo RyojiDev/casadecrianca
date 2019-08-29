@@ -26,7 +26,7 @@
             $result = $conn->query( $sql );
             $casaresponsavel = $result->fetchAll();
             $nome =  $casaresponsavel[0]['nome'];
-            echo $nome;
+           // echo $nome;
             if (empty($casaresponsavel)) {
                 //echo "<script>alert('There are no fields to generate a report');</script>"
                 header('Location: index.php');
