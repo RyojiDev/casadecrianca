@@ -10,8 +10,9 @@
 	<?php	include ('import_css.phtml'); ?>
 
 	</head>
-	<body>
 
+	<body>
+<div id="carregando">
 		<header>
 			<div class="container">
 				<h2 class="titulo">Pré-Matrícula de Novatos para 2020</h2>
@@ -51,5 +52,7 @@
 
 		
 <?php include("import.phtml"); ?>
+
+</div>
 	</body>
 </html>
