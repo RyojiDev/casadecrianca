@@ -71,28 +71,6 @@ section h2 {
     margin-bottom: .5em;
 } */
 
-table {
-    /* width: 100%; */
-    margin-bottom: .5em;
-    display: block;
-    margin-left: 500px;
-    margin-top: 800px;
-    /* table-layout: fixed; */
-}
-
-td,
-th {
-    padding: .7em;
-    margin: 0;
-    border: 1px solid #ccc;
-    text-align: center;
-}
-
-th {
-    font-weight: bold;
-    background-color: #EEE;
-}
-
 label {
     color: #555;
     display: block;
@@ -206,4 +184,6 @@ button:disabled {
     display: block;
     position: relative;
     bottom: 400px;
+    top: 450px;
+    left: 500px;
 }

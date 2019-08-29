@@ -201,7 +201,7 @@
 
         <?php
 
-              $tabela = "<table class='table thead-light' id='tabela_matricula'>
+              $tabela = "<table class=' table table-striped table thead-light' id='tabela_matricula'>
                     <thead class='thead-light'>
                         <tr>
                             <th>CPF</th>

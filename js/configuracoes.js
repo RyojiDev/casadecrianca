@@ -37,6 +37,7 @@ $(document).ready(function() {
     $("#nascimento").datepicker({
         format: 'dd/mm/yyyy',
         language: 'pt-BR',
+        endDate: "today",
 
     });
 
