@@ -91,11 +91,7 @@
 				<h2 class="titulo">Pré-Matrícula de Novatos para 2020</h2>
 			</div>
 		</header>
-		<main>
-			<section class="container" id="h2">
-				<h2>Matrícula</h2>
-			</section>
-		</main>
+		
         <?php
         $ano = $casaresponsavel[0]['ano'];
         $cpf = $casaresponsavel[0]['cpf'];
