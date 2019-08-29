@@ -23,13 +23,15 @@ $(document).ready(function() {
     block();
 
     var intervalo = setInterval(function() {
-        clearInterval(intervalo);
+            clearInterval(intervalo);
 
-        document.getElementById("carregando").style.display = "block";
-        $.unblockUI();
-    }, 1000);
 
-    $("#cpf").mask('000.000.000-00', { reverse: true });
+            $("#carregando").fadeIn(1500);
+            $.unblockUI();
+        },
+        1000);
+
+    $(".cpf").mask('000.000.000-00', { reverse: true });
 
 
     $("#nascimento").datepicker({

@@ -29,7 +29,7 @@
 					<h2 class="form-form-login-header text-center">Login</h2>
 
 					<div class="container login-input">
-						CPF: <input class="form-control" type="number" name="cpf" required="required" maxlength="11"
+						CPF: <input class="form-control cpf" type="text" name="cpf" required="required" maxlength="11"
 							size="number"> <br><br>
 					</div><!-- div cpf -->
 					<div class="container login-input">

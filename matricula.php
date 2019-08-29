@@ -122,7 +122,7 @@
         <div class="row">
             <div class="form-group col-4">
                 <label for="cpf">CPF</label>
-                <input type="text" class="form-control" name="cpf" id="cpf" required="required" maxlength="11" size="8">
+                <input type="text" class="form-control cpf" name="cpf" id="cpf" required="required" maxlength="11" size="8">
             </div>
             <!-- div cpf -->
             
