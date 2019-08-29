@@ -1,25 +1,31 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-	<head>
-		<meta charset="UTF-8">
-		<title>Colégio Casa de Criança</title>
-		<link rel="icon" href="favicon.ico" type="image/x-icon">
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<?php include("import_css.phtml"); ?>
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" href="css/configuracao.css">
 
-	</head>
+
+	<title>Colégio Casa de Criança</title>
+</head>
+
 	<body>
-
+	<div id="carregando">
+    <div id="content">
+        <div id="inner-content">
+        <?php include('menu-lateral.php'); ?>
+		
 		<header>
 			<div class="container">
 				<h2 class="titulo">Pré-Matrícula de Novatos para 2020</h2>
 			</div>
 		</header>
-		<main>
-			<section class="container">
-				<h2>Cadastro</h2>
-			</section>
-		</main>
+		
 	<form method="post" action="matricula.php">
 		<div class="container">
 			CPF: <input type="number" name="cpf" required="required" maxlength="11" size="number" > <br><br>
@@ -40,7 +46,13 @@
 			<input type="submit" value="Próxima"/>
 		</div>
 	</form>
-		<script src="js/principal.js" ></script>
+		
 
-	</body>
+</div><!---- div inner content -->
+</div> <!----- div content--->
+
+
+<script src="js/principal.js" ></script>
+<?php include("import.phtml"); ?>
+</body>
 </html>
