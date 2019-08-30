@@ -38,7 +38,7 @@ if (!empty($cpf) && !empty($senha) && empty($nome) ){
 
 	$conn = getConnection();
 	$sql = "SELECT * FROM casaresponsavel where cpf = " .$cpf." and senha = '".$senha."';";
- //echo $sql;
+// echo $sql;
 	$result = $conn->query( $sql );
 	$casaresponsavel = $result->fetchAll();
 	$nome =  $casaresponsavel[0]['nome'];
@@ -60,7 +60,10 @@ if (isset($_POST) && !empty($_POST)){
 }
 
 if (!empty($cpf) && !empty($senha) && !empty($nome) && !empty($telefone) && !empty($email) ){
+	include './connection.php';
+
 	$conn = getConnection();
+	echo "Conexão:".$conn;
 	$sql = "INSERT INTO casaresponsavel (ano, cpf, nome, senha, telefone, email)
 		       VALUES (:ano, :cpf, :nome, :senha, :telefone, :email)";
 	$stmt = $conn->prepare($sql);

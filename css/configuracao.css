@@ -27,7 +27,6 @@
     top: 0;
     position: absolute;
     display: block;
-    width: 100%;
     height: 100%;
 }
 
@@ -42,7 +41,7 @@
     height: 100%;
     background-color: #1E5188;
     border-right: 1px solid #e9e9e9;
-    box-shadow: 0 0 15px rgba(0, 0, 0, .15);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
     display: block;
     left: 2px;
     top: 1px;
@@ -75,9 +74,9 @@
 } */
 
 #principal ul li h4 p {
-    font: 1.25em/80px 'Fredoka One', cursive;
+    font: 1.25em / 80px 'Fredoka One', cursive;
     /* position: relative; */
-    right: 0px;
+    right: 0;
     color: #ffff;
 }
 
@@ -105,26 +104,31 @@
     top: 150px;
 }
 
-#iconeTitulo {
+
+/*#iconeTitulo {
     bottom: 1px;
     top: 2px;
     /* position: relative; */
-    right: 16px;
+
+
+/*right: 16px;
     font: 1.25em 'Fredoka One', cursive;
     color: #e9e9e9;
     text-align: center;
     border-bottom: 1px solid #9c9c9c;
     /* display: block; */
-    margin-top: 60px;
-}
 
-#icon {
+
+/* margin-top: 60px;
+}/*
+
+/* #icon {
     position: relative;
-    width: 150px;
-    height: 150px;
+    width: 80px;
+    height: 80px;
     left: 70px;
     top: 40px;
-}
+} */
 
 .item-li-cpf {
     color: #e9e9e9;

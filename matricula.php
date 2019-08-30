@@ -3,13 +3,19 @@
 <?php
     include './connection.php';
     include './functions.php';
-    
+    $ano = 2019;
     $cpf = filter_input(INPUT_POST,'cpf',FILTER_SANITIZE_STRING);
     $senha = filter_input(INPUT_POST,'senha',FILTER_SANITIZE_STRING);
     $nome = filter_input(INPUT_POST,'nome',FILTER_SANITIZE_STRING);
     $telefone = filter_input(INPUT_POST,'tel',FILTER_SANITIZE_STRING);
     $email = filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
-    $ano = 2019;
+    // Removendo caracteres ao salvar no banco.
+    $cpf = str_replace(".", "", $cpf);
+    $cpf = str_replace("-", "", $cpf);
+    $telefone = str_replace("(", "", $telefone);
+    $telefone = str_replace(")", "", $telefone);
+    $telefone = str_replace("-", "", $telefone);
+
         //echo "CPF:".$cpf;
         //echo " Ano:".$ano;
         //echo $senha;
@@ -68,7 +74,7 @@
           }
 
         ?>
-      
+
 	<head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,20 +84,20 @@
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <link rel="stylesheet" href="css/configuracao.css">
-         
+
 	</head>
 	<body>
         <div id="carregando">
     <div id="content">
         <div id="inner-content">
         <?php include ('menu-lateral.php') ?>
-       
+
     <header>
     <div class="container">
 				<h2 class="titulo">Pré-Matrícula de Novatos para 2020</h2>
 			</div>
 		</header>
-		
+
         <?php
         $ano = $casaresponsavel[0]['ano'];
         $cpf = $casaresponsavel[0]['cpf'];
@@ -112,11 +118,11 @@
             echo $value;
         }
         */
-        
+
         ?>
-     
-       
-         
+
+
+
      <div class="container">
     <form name="matricula_form" id="matricula_form" method="get">
         <div class="row">
@@ -125,14 +131,14 @@
                 <input type="text" class="form-control cpf" name="cpf" id="cpf" required="required" maxlength="11" size="8">
             </div>
             <!-- div cpf -->
-            
-    
+
+
             <div class="form-group col-6">
                 <label for="Nome">Nome</label>
                 <input class="form-control" type="text" name="nome" id="nome" required="required">
             </div>
             <!-- div nome -->
-            
+
             <div class="form-group col-2">
                 <label for="Sexo">Sexo</label>
                 <select class="form-control" name="sexo" id="sexo">
@@ -144,14 +150,14 @@
             <!--div select Sexo-->
 
         </div><!--- div row -->
-    
+
         <div class="row">
             <div class="form-group col-2">
                 <label for="nascimento">Nascimento</label>
                 <input class="form-control" type="text" id="nascimento" name="nascimento" required="required" onkeyup="MascaraData(this.id)">
             </div>
             <!-- div nascimento -->
-            
+
             <div class="form-group col-2">
                 <label for="turno">Turno</label>
                 <select class="form-control" name="turno" id="turno" onchange="atualizarSeries()">
@@ -168,10 +174,10 @@
                 </select>
             </div>
             <!--- div turno -->
-    
+
             <div class="form-group col-2">
                 <label for="serie">Serie</label>
-                <input type="text" name="serie" id="serie" class="form-control" required="required"  disabled>   
+                <input type="text" name="serie" id="serie" class="form-control" required="required"  disabled>
             </div>
 
         </div><!---- div row nascimento -->
@@ -181,13 +187,13 @@
                 <input type="button" class="btn btn-primary" onclick="Enviar();" value="Adicionar" />
             </div>
         </div>
-                    
+
     </form>
 
     <!-- matricula_form -->
 </div> <!-- container -->
 
-         
+
           <?php  echo '<br> Faixa de Datas:<br>';
         foreach ($casaserie as $campo)
         {
@@ -196,8 +202,8 @@
         }?>
                         </div><!-- div inner Content -->
             </div><!----- div content -->
-        
-          
+
+
 
         <?php
 
