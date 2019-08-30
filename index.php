@@ -8,7 +8,15 @@
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
 	<?php	include ('import_css.phtml'); ?>
+<?php 
+if (isset($_POST) && !empty($_POST)){
+	echo '<pre>';
+	print_r($_POST);
+	echo '</pre>';
+}
 
+
+?>
 	</head>
 
 	<body>
@@ -51,6 +59,8 @@
 
 			</form>
 
+			
+
 
 			
 		</div><!--- div Carregando --> 
@@ -58,12 +68,12 @@
 		<div class="modal fade" tabindex="-1" role="dialog" id="modal_cadastro_aluno">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<form name="form_cadastro_aluno" class="form-horizontal" id="form_cadastro_aluno">
+						<form method="POST" name="form_cadastro_aluno" class="form-horizontal" id="form_cadastro_aluno">
 							<div class="modal-header">
 								<h5>Cadastrar Aluno</h5>
 							</div>
 							<div class="modal-body">
-								<input type="hidden" id="id" class="form-control">
+								<input type="number" ano="ano" name="ano" class="form-control">
 								<div class="form-group">
 									<label for="cnpjCliente" class="control-label">CPF
 									</label>
@@ -112,6 +122,8 @@
 										<button type="cancel" class="btn btn-secondary" data-dismiss="modal">
 											Cancelar</button>
 									</div>
+
+								
 <?php include("import.phtml"); ?>
 
 </div>

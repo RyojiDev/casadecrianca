@@ -63,13 +63,23 @@ $(document).ready(function() {
     });
 
     $("#salvar_aluno_confirm").click(function(e) {
+        e.preventDefault();
         cpf_aluno = $("#cpf_aluno").val();
         senha_aluno = $("#senha_aluno").val();
         nome_aluno = $("#nome_aluno").val();
         telefone_aluno = $("#telefone_aluno").val();
         email_aluno = $("#email_aluno").val();
 
-        return false;
+        $.ajax({
+            url: "cadastro.php",
+            type: 'POST',
+            data: $("#form_cadastro_aluno").serialize(),
+            success: function(data) {
+                $("#receber_dados").html(data);
+            }
+        });
+
+
     });
 
     $("#nascimento").datepicker({

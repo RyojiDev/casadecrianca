@@ -9,12 +9,82 @@
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
 		<link rel="stylesheet" href="css/configuracao.css">
-
+<?php include("connection.php") ?>
 
 	<title>Colégio Casa de Criança</title>
 </head>
 
 	<body>
+
+	<div id="receber_dados">Recebe Os Dados</div>
+<?php 
+
+$cpf_aluno   = $_POST['cpf_aluno'];
+$senha_aluno = md5($_POST['senha_aluno']);
+$nome_aluno	 = $_POST['nome_aluno'];
+$telefone    = $_POST['telefone'];
+$email_aluno = $_POST['email_aluno'];
+
+$result_cadastro_aluno = "INSERT INTO casaresponsavel ( cpf, nome, senha, telefone, email) VALUES('$cpf_aluno','$senha_aluno','$nome_aluno','$telefone','$email_aluno')";
+$resultado_cadastro_aluno = mysqli_query($conn,$result_cadastro_aluno);
+
+if (!empty($cpf) && !empty($senha) && empty($nome) ){
+
+	$conn = getConnection();
+	$sql = "SELECT * FROM casaresponsavel where cpf = " .$cpf." and senha = '".$senha."';";
+// echo $sql;
+	$result = $conn->query( $sql );
+	$casaresponsavel = $result->fetchAll();
+	$nome =  $casaresponsavel[0]['nome'];
+   // echo $nome;
+	if (empty($casaresponsavel)) {
+		//echo "<script>alert('There are no fields to generate a report');</script>"
+		header('Location: index.php');
+	} else{
+	  //  print_r( $casaresponsavel );
+	}
+}
+
+if (isset($_POST) && !empty($_POST)){
+	echo '<pre>';
+	print_r($_POST);
+	echo '</pre>';
+	
+    include './functions.php';
+}
+$ano = $_POST['ano'];
+$cpf   = $_POST['cpf_aluno'];
+$senha = md5($_POST['senha_aluno']);
+$nome	 = $_POST['nome_aluno'];
+$telefone    = $_POST['telefone'];
+$email = $_POST['email_aluno'];
+
+if (!empty($cpf) && !empty($senha) && !empty($nome) && !empty($telefone) && !empty($email) ){
+	include './connection.php';
+
+	$conn = getConnection();
+	$sql = "INSERT INTO casaresponsavel (ano, cpf, nome, senha, telefone, email)
+	VALUES (:ano, :cpf, :nome, :senha, :telefone, :email)";
+	$stmt = $conn->prepare($sql);
+	$stmt->bindParam(':ano', $ano);
+	$stmt->bindParam(':cpf', $cpf);
+	$stmt->bindParam(':nome', $nome);
+	$stmt->bindParam(':senha', $senha);
+	$stmt->bindParam(':telefone', $telefone);
+	$stmt->bindParam(':email', $email);
+	if($stmt->execute()){
+		echo "Salvo com Sucesso!";
+		unset($nome);
+		unset($telefone);
+		unset($email);
+		header('Location: index.php');
+	} else {
+		echo "Erro ao Salvar!";
+	}
+
+}
+?>
+
 	<div id="carregando">
     <div id="content">
         <div id="inner-content">
