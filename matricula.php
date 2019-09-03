@@ -16,6 +16,12 @@
     $telefone = str_replace(")", "", $telefone);
     $telefone = str_replace("-", "", $telefone);
 
+    $conn = getConnection();
+    $sql = "SELECT * FROM casamatriculaconfig where ano = $ano";
+    $result = $conn->query( $sql );
+    $casamatriculaconfig = $result->fetchAll();
+    $cabecalho = $casamatriculaconfig[0]['cabecalho'];
+
         //echo "CPF:".$cpf;
         //echo " Ano:".$ano;
         //echo $senha;
@@ -67,7 +73,7 @@
         }
         function SeriesMenor($ano, $dataNascimento, $turno) {
             $conn = getConnection();
-            $sql = "SELECT serie, serie_longa, data_referencia, vagas FROM casaserie where ano = ".$ano. " and turno='".$turno. "' and '".$dataNascimento."' between data_referencia_ini and data_referencia_fim order by data_referencia";
+            $sql = "SELECT serie, serie_longa, vagas FROM casaserie where ano = ".$ano. " and turno='".$turno. "' and '".$dataNascimento."' between data_referencia_ini and data_referencia_fim order by data_referencia";
             $result = $conn->query( $sql );
             $casaserie = $result->fetchAll();
             return $casaserie;
@@ -83,18 +89,18 @@
 		<link rel="icon" href="favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <link rel="stylesheet" href="css/configuracao.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
 
 	</head>
 	<body>
         <div id="carregando">
     <div id="content">
         <div id="inner-content">
-        <?php include ('menu-lateral.php') ?>
+        <?php include ('menu_bar.php') ?>
 
     <header>
-    <div class="container">
-				<h2 class="titulo">Pré-Matrícula de Novatos para 2020</h2>
+            <div class="container">
 			</div>
 		</header>
 
@@ -105,7 +111,7 @@
         $result = $conn->query( $sql );
         $casaserie = $result->fetchAll();
         //print_r( $casaserie );
-        $sql = "SELECT * FROM casamatricula where ano = ".$ano." and cpfresponsavel = ".$cpf;
+        $sql = "SELECT casamatricula.*, casaserie.* FROM casamatricula  INNER JOIN casaserie on casamatricula.serie = casaserie.serie where casamatricula.ano = ".$ano." and casamatricula.cpfresponsavel = ".$cpf." and casamatricula.turno = casaserie.turno order by casamatricula.nascimento" ;
         $result = $conn->query( $sql );
         $casamatricula = $result->fetchAll();
         //print_r( $casamatricula );
@@ -124,22 +130,38 @@
 
 
      <div class="container">
-    <form name="matricula_form" id="matricula_form" method="get">
-        <div class="row">
-            <div class="form-group col-4">
+    <form class="form-horizontal" name="matricula_form" id="matricula_form" method="get">
+        <input type="hidden" value="<?php echo formatCnpjCpf($cpf) ?>" id="cpf_responsavel">
+            
+    <div class="row">
+            <div class="form-group col-6">
                 <label for="cpf">CPF</label>
-                <input type="text" class="form-control cpf" name="cpf" id="cpf" required="required" maxlength="11" size="8">
+                <input type="text" class="form-control mr-2 cpf" name="cpf" id="cpf" required="required" maxlength="11" size="8">
             </div>
             <!-- div cpf -->
 
 
             <div class="form-group col-6">
                 <label for="Nome">Nome</label>
-                <input class="form-control" type="text" name="nome" id="nome" required="required">
+                <input class="form-control mr-2 " type="text" name="nome" id="nome" required="required">
             </div>
             <!-- div nome -->
+    </div>
+   
 
-            <div class="form-group col-2">
+        
+
+        
+
+    <div class="row">
+            <div class="form-group col-4">
+                <label for="nascimento">Nascimento</label>
+                <input class="form-control" type="text" id="nascimento" name="nascimento" required="required" onkeyup="MascaraData(this.id)">
+            </div>
+            <!-- div nascimento -->
+           
+
+            <div class="form-group col-3">
                 <label for="Sexo">Sexo</label>
                 <select class="form-control" name="sexo" id="sexo">
                     <option value=""></option>
@@ -148,19 +170,13 @@
                 </select>
             </div>
             <!--div select Sexo-->
+    
+            
 
-        </div><!--- div row -->
-
-        <div class="row">
-            <div class="form-group col-2">
-                <label for="nascimento">Nascimento</label>
-                <input class="form-control" type="text" id="nascimento" name="nascimento" required="required" onkeyup="MascaraData(this.id)">
-            </div>
-            <!-- div nascimento -->
-
-            <div class="form-group col-2">
+            <div class="form-group col-3">
                 <label for="turno">Turno</label>
-                <select class="form-control" name="turno" id="turno" onchange="atualizarSeries()">
+                <!-- <select class="form-control" name="turno" id="turno" onchange="atualizarSeries()"> -->
+                <select class="form-control" name="turno" id="turno" onchange="serieConsulta()">
                     <option value=""></option>
                     <?php
                         $sql_turno = "SELECT DISTINCT turno FROM casaserie";
@@ -177,24 +193,22 @@
 
             <div class="form-group col-2">
                 <label for="serie">Serie</label>
+                <input type="hidden" value="" id="serie_number">
                 <input type="text" name="serie" id="serie" class="form-control" required="required"  disabled>
             </div>
 
-        </div><!---- div row nascimento -->
-
-        <div class="row">
-            <div class="form-group col-2">
-                <input type="button" class="btn btn-primary" onclick="Enviar();" value="Adicionar" />
+        
             </div>
-        </div>
+        
+            <div class="form-group">
+                <input type="button" class="btn btn-primary" id="adicionar_aluno" onclick="Enviar();" value="Adicionar" />
+            </div>
+              
 
-    </form>
+    </form>   <!-- matricula_form -->
 
-    <!-- matricula_form -->
-</div> <!-- container -->
-
-
-          <?php  echo '<br> Faixa de Datas:<br>';
+<div class="container border">
+    <?php  echo '<br> Faixa de Datas:<br>';
         foreach ($casaserie as $campo)
         {
             echo '<br>'.$campo['serie'].' - '.$campo['turno'].' - '.$campo['serie_longa'].' - '.$campo['data_referencia_ini'].' - '.$campo['data_referencia_fim'];
@@ -205,35 +219,43 @@
 
 
 
-        <?php
+            <?php
 
-              $tabela = "<table class=' table table-striped table thead-light' id='tabela_matricula'>
-                    <thead class='thead-light'>
-                        <tr>
-                            <th>CPF</th>
-                            <th>NOME</th>
-                            <th>SEXO</th>
-                            <th>NASCIMENTO</th>
-                            <th>TURNO</th>
-                            <th>SERIE</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <tr>";
-        $return = "$tabela";
-          foreach ($casamatricula as $campo)
-        {
-            $return.= "<td>" . formatCnpjCpf(utf8_encode($campo["cpf"])) . "</td>";
-            $return.= "<td>" . utf8_encode($campo["nome"]) . "</td>";
-            $return.= "<td>" . utf8_encode($campo["sexo"]) . "</td>";
-            $return.= "<td>" . utf8_encode($campo["nascimento"]) . "</td>";
-            $return.= "<td>" . utf8_encode($campo["serie"]) . "</td>";
-            $return.= "<td>" . utf8_encode($campo["vaga"]) . "</td>";
-            $return.= "</tr>";
-        }
+$tabela = "<table class=' table table-striped table thead-light' id='tabela_matricula'>
+      <thead class='thead-light'>
+          <tr>
+              <th>CPF</th>
+              <th>Nome</th>
+              <th>Sexo</th>
+              <th>Nascimento</th>
+              <th>Turno</th>
+              <th>Série</th>
+              <th>Status</th>
+              <th></th>
+          </tr>
+      </thead>
+      <tbody>
+      <tr>";
+$return = "$tabela";
+foreach ($casamatricula as $campo)
+{
+$return.= "<td>" . formatCnpjCpf(utf8_encode($campo["cpf"])) . "</td>";
+$return.= "<td>" . utf8_encode($campo["nome"]) . "</td>";
+$return.= "<td>" . utf8_encode($campo["sexo"]) . "</td>";
+$return.= "<td>" . formataData(utf8_encode($campo["nascimento"])) . "</td>";
+$return.= "<td>" . turno(utf8_encode($campo["turno"])) . "</td>";
+$return.= "<td>" . utf8_encode($campo["serie"]) ."-".utf8_encode($campo["serie_longa"]). "</td>";
+$return.= "<td>" . status($campo["vagas"],$campo["vaga"])."</td>";
+$return.= "<td>" . statusArquivo($campo["vagas"],$campo["vaga"],$campo["caminho_pdf"])."</td>";
+$return.= "</tr>";
+}
 
-        echo $return.="</tbody></table>";
+echo $return.="</tbody></table>";
 ?>
+</div>
+
+</div> <!-- container -->
+
 
 <!--- importa todas as classes js, para serem carregados em todas as paginas, é só digitar esse comando -->
 <?php include("import.phtml"); ?>

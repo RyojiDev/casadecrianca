@@ -119,7 +119,7 @@ if (isset($_POST) && !empty($_POST)){
 									</label>
 									<div class="modal-footer">
 										<button id="salvar_confirm" type="submit" class="btn btn-success">Salvar</button>
-										<button type="cancel" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+										<button type="cancel" class="btn btn-secondary"  data-dismiss="modal">Cancelar</button>
 									</div>
 
 

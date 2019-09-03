@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
     function block() {
 
@@ -22,20 +22,20 @@ $(document).ready(function () {
 
     block();
 
-    var intervalo = setInterval(function () {
-        clearInterval(intervalo);
+    var intervalo = setInterval(function() {
+            clearInterval(intervalo);
 
 
-        $("#carregando").fadeIn(1500);
-        $.unblockUI();
-    },
+            $("#carregando").fadeIn(1500);
+            $.unblockUI();
+        },
         1000);
 
     $(".cpf").mask('000.000.000-00', { reverse: true });
 
     $(".telefone").mask("(00) 0000-00009");
 
-    $(".telefone").blur(function (event) {
+    $(".telefone").blur(function(event) {
         if ($(this).val().length == 15) {
             $(".telefone").mask("(00) 00000-0009")
         } else {
@@ -49,22 +49,27 @@ $(document).ready(function () {
         }
     });
 
-    $("#salvar_confirm").submit(function (e) {
-        return false;
+    $("#modal_cadastro").submit(function(e) {
+        e.preventDefault();
 
     });
 
-    $("#salvar_confirm").click(function (e) {
-        e.preventDefault();
+    $("#salvar_confirm").click(function(e) {
+
 
         $.ajax({
             url: "cadastro.php",
             type: 'POST',
             data: $("#form_cadastro").serialize(),
-            success: function (data) {
+            success: function(data) {
                 $("#receber_dados").html(data);
+                $.growl.notice({ message: "Responsavel, Salvo Com sucesso!" });
+                $("#modal_cadastro").modal("hide");
+
             }
+
         });
+
 
 
     });
@@ -74,6 +79,12 @@ $(document).ready(function () {
         language: 'pt-BR',
         endDate: "today",
 
+    });
+
+    $(document).ready(function() {
+        $('#sidebarCollapse').on('click', function() {
+            $('#sidebar').toggleClass('active');
+        });
     });
 
 

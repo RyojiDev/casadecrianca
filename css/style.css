@@ -1,0 +1,50 @@
+            .texto-menu {
+                color: #ffff;
+                font-weight: bold;
+            }
+            
+            .texto-titulo {
+                font-size: 30px;
+                font-weight: bold;
+            }
+            
+            .icone-menu {
+                width: 35%;
+            }
+            
+            #matricula_form {
+                top: 20px;
+                position: relative;
+                display: block;
+            }
+            
+            .texto-nome {
+                /* margin-right: 10px; */
+                display: block;
+                position: relative;
+                left: 20px;
+            }
+            
+            .texto-cpf {
+                text-align: center;
+            }
+            
+            @media screen and (max-width: 480px) {
+                .texto-cpf {
+                    right: 100px;
+                    display: block;
+                    position: relative;
+                    margin-left: -120px;
+                }
+            }
+            
+            @media (max-width: 400px) {
+                .texto-cpf {
+                    left: 72px;
+                    display: block;
+                    position: relative;
+                    font-weight: bold;
+                    color: black;
+                    margin-left: -120px;
+                }
+            }

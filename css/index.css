@@ -40,14 +40,6 @@ button:disabled {
     border: 1px solid red;
 }
 
-#tabela_matricula {
-    display: block;
-    position: relative;
-    bottom: 400px;
-    top: 450px;
-    left: 500px;
-}
-
 .black {
     background: black;
 }

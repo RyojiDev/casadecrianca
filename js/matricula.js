@@ -1,18 +1,35 @@
-window.onload = function() {
+$("#adicionar_aluno").click(function() {
+    action = "inserir_aluno",
+        cpf = $("#cpf").val(),
+        nome = $("#nome").val(),
+        nascimento = $("#nascimento").val(),
+        sexo = $("#sexo").val(),
+        turno = $("#turno").val(),
+        cpfresponsavel = $("#cpf_responsavel").val(),
+        serie = $("#serie_number").val(),
+        vaga = 0,
+        nascimento = nascimento.split('/').reverse().join('-');
+
+    $.ajax({
+        url: "salvarmatricula.php",
+        type: "POST",
+        data: {
+            action,
+            cpf,
+            nome,
+            nascimento,
+            sexo,
+            turno,
+            cpfresponsavel,
+            serie,
+            vaga
 
 
+        },
+        success: function(data) {
+            console.log(data);
+        }
 
-    // Focus = Changes the background color of input to yellow
-    // onfocusin="focusFunction()" onfocusout="blurFunction()"
-    function focusFunction() {
-        var nascimento = document.getElementById("nascimento");
-        var turno = document.getElementById("turno");
-        var serie = document.getElementById("serie");
-        console.log(nascimento.value);
-        console.log(turno.value);
-        console.log(serie.value);
-        SeriesMenor($ano, nascimento, turno);
-        // serie.value="ssssss";
-    }
+    })
 
-}
+});

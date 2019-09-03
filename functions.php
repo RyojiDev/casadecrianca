@@ -14,4 +14,29 @@ function turno($value) {
   else return "Noite";
 
 }
+
+function formataData($value){
+  $value = strtotime($value);
+  $new_date = date("d-m-Y", $value);
+  $value = str_replace('-', '/', $new_date);
+  return $value;
+}
+
+function removepontocpf($cpf){
+  $cpf = str_replace("-", "", $cpf);
+   $cpf = str_replace(".", "", $cpf);
+   return $cpf;
+}
+
+function status($vagasSerie, $vagaAluno){
+  if ($vagaAluno<=$vagasSerie) return "Pré-Matriculado";
+  else                         return "Não Matriculado";
+}
+
+function statusArquivo($vagasSerie, $vagaAluno, $arquivo){
+  if ($vagaAluno<=$vagasSerie) return '<a href="'.$arquivo.'">Ficha de Matrícula</a>';
+  else                         return "";
+}
+
+
 ?>

@@ -1,13 +1,14 @@
+
 <nav class="sidebar-header" id="principal">
 
-<div class="main-icon" id = "iconeP">    
+   
 
-<img src="img/casa_de_crianca_logo.png" id="icon">
+<img src="img/casa_de_crianca_logo.png" class="col-6 col-md-offset-2" id="icon">
 
 
  
 
-</div>
+
 
     <div id = "divTitulo">
 <h5 id = "iconeTitulo"></h5>
@@ -29,5 +30,6 @@
         </a>
     </li>
 </ul>
+</div><!----- div collapse -->
 </div>
 </nav>
