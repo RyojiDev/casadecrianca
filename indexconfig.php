@@ -45,7 +45,7 @@
 					<div class="container">
 						<button class="btn btn-success btn-block" type="submit" value="Próxima">Próxima</button>
 						<button class="btn btn-success  btn-block" data-toggle="modal" data-target="#modal_config">Criar</button>
-						<button class="btn btn-success  btn-block" data-toggle="modal" data-target="#modal_Series" href='salvarserie.php'>Série</button>
+						<button class="btn btn-success  btn-block" data-toggle="modal" data-target="#modal_series"> Série</button>
 						</div>
 					</div>
 					</div>
@@ -64,7 +64,7 @@
 							<div class="modal-header">
 								<h5>Definições de Matrícula</h5>
 							</div>
-							<div class="modal-body">
+						<div class="modal-body">
 							<input type="hidden" action="inserir" name="action" value="inserir">
 								<div class="form-group">
 									<label for="dataIni" class="control-label">Data Inicial</label>
@@ -75,6 +75,7 @@
 										<input required type="text" class="form-control horaIni" id="horaIni" name="horaIni"
 											placeholder="00:00:00">
 									</div>
+								</div>	
 									<br>
 									<label for="dataFim" class="control-label">Data Final</label>
 									<div class="input-group">
@@ -85,37 +86,114 @@
 											placeholder="00:00:00">
 									</div>
 									<br>
-									<div class="form-group">
+								<div class="form-group">
 									<label for="cabecalho" class="control-label">Cabeçalho</label>
 									<div class="input-group">
 										<input required type="text" class="form-control" id="cabecalho" name="cabecalho"
 											placeholder="Informe o Cabeçalho">
 									</div>
+								</div>
 									<br>
  								<div class="form-group">
 									<label for="descricao" class="control-label">Descrição</label>
 									<div class="input-group">
 										<textarea class="form-control" id="descricao" name="descricao" rows="2"></textarea>
 									</div>
+								</div>	
 									<br>
 								<div class="form-group">
 								<label for="observacao" class="control-label">Observação</label>
 									<div class="input-group">
 										<textarea class="form-control" id="observacao" name="observacao" rows="2"></textarea>
 									</div>
-
-									<br>
-									<div class="form-group">
+								</div>	
+											<br>
+								<div class="form-group">
 									</label>
 									<div class="modal-footer">
 										<button id="salvar_config_confirm" type="submit" class="btn btn-success">Salvar</button>
 										<button type="cancel" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 									</div>
-									<div class="modal fade" tabindex="-1" role="dialog" id="modal_config">
+								</div>
+								</div>
+					</div>	
+				</div>		
+			</div>
+			</div>				
+
+
+
+
+
+
+
+			<div class="modal fade" tabindex="-1" role="dialog" id="modal_series">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<form  method="POST" name="form_config" class="form-horizontal" id="form_config">
+							<div class="modal-header">
+								<h5>Definições de Series</h5>
+							</div>
+						<div class="modal-body">
+							<input type="hidden" action="inserir" name="action" value="inserir">
+								<div class="form-group">
+									<label for="dataIni" class="control-label">Data Inicial</label>
+									<div class="input-group">
+  									<input required type="date" class="form-control dataIni" id="dataIni" name="dataIni"
+											placeholder="00/00/000">
+											<label for=" horaIni" class="control-label">Hora Inicial</label>
+										<input required type="text" class="form-control horaIni" id="horaIni" name="horaIni"
+											placeholder="00:00:00">
+									</div>
+								</div>	
+									<br>
+									<label for="dataFim" class="control-label">Data Final</label>
+									<div class="input-group">
+										<input required type="date" class="form-control dataFim" id="dataFim" name="dataFim"
+											placeholder="00/00/000">
+											<label for=" horaFim" class="control-label">Hora Final</label>
+											<input required type="text" class="form-control horaFim" id="horaFim" name="horaFim"
+											placeholder="00:00:00">
+									</div>
+									<br>
+								<div class="form-group">
+									<label for="cabecalho" class="control-label">Cabeçalho</label>
+									<div class="input-group">
+										<input required type="text" class="form-control" id="cabecalho" name="cabecalho"
+											placeholder="Informe o Cabeçalho">
+									</div>
+								</div>
+									<br>
+ 								<div class="form-group">
+									<label for="descricao" class="control-label">Descrição</label>
+									<div class="input-group">
+										<textarea class="form-control" id="descricao" name="descricao" rows="2"></textarea>
+									</div>
+								</div>	
+									<br>
+								<div class="form-group">
+								<label for="observacao" class="control-label">Observação</label>
+									<div class="input-group">
+										<textarea class="form-control" id="observacao" name="observacao" rows="2"></textarea>
+									</div>
+								</div>	
+											<br>
+								<div class="form-group">
+									</label>
+									<div class="modal-footer">
+										<button id="salvar_config_confirm" type="submit" class="btn btn-success">Salvar</button>
+										<button type="cancel" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+									</div>
+								</div>
+								</div>
+					</div>	
+				</div>		
+			</div>
+			</div>				
 
 	<?php include("import.phtml"); ?>
 
-	</div>
+	
 
 	</body>
 </html>

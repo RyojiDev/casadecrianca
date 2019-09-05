@@ -48,3 +48,9 @@ button:disabled {
     padding: 8px;
     border-radius: 10px;
 }
+
+#adicionar_aluno {
+    margin-bottom: 10px;
+    margin-top: 15px;
+    display: none;
+}

@@ -8,6 +8,7 @@ $turno = $_POST["turno"];
 $cpfresponsavel = $_POST["cpfresponsavel"];
 $cpf = $_POST["cpf"];
 $nome = $_POST["nome"];
+$nascimento = $_POST["nascimento"];
 $sexo = $_POST["sexo"];
 $vaga = $_POST["vaga"];
 
@@ -24,27 +25,26 @@ echo "</pre>";
 if ($action == "inserir_aluno") {
     $conn = getConnection();
 
-    $queryMatriculados = "SELECT matriculados FROM casaserie WHERE ano = '.$ano. ' and serie = '.$serie.' and turno =
-	'.$turno";
-		echo $queryMatriculados;
+    $queryMatriculados = "SELECT matriculados FROM casaserie WHERE ano = ".$ano." and serie = ".$serie." and turno = '".$turno."';";
+
+    echo $queryMatriculados;
 
     $result = $conn->query($queryMatriculados);
 	$queryMatriculados = $result->fetchAll();
     $vagas = $queryMatriculados[0]['matriculados'];
     $vagas = $vagas + 1;
     //Atualizando casaserie
-    $sqlUpdate = "UPDATE casaserie (matriculados) VALUES (:matriculado) WHERE ano = '.$ano. ' and serie = '.$serie.' and
-    turno = '.$turno";
+    $sqlUpdate = "UPDATE casaserie SET matriculados =".$vagas." WHERE ano = ".$ano." and serie = ".$serie." and turno = '".$turno."';";
     $stmtUpdate = $conn->prepare($sqlUpdate);
-    $stmtUpdate->bindParam(':matriculado', $vagas);
+    echo $sqlUpdate;
     if ($stmtUpdate->execute()) {
     echo "Atualizado (casaserie) com Sucesso!";
     } else {
     echo "Erro ao Salvar (casaserie)!";
     }
 
-    $sql = "INSERT INTO casamatricula (ano, serie, turno, cpfresponsavel, cpf, nome, sexo, vaga)
-			VALUES (:ano, :serie, :turno, :cpfresponsavel, :cpf, :nome, :sexo, :vaga)";
+    $sql = "INSERT INTO casamatricula (ano, serie, turno, cpfresponsavel, cpf, nome,nascimento, sexo, vaga)
+			VALUES (:ano, :serie, :turno, :cpfresponsavel, :cpf, :nome, :nascimento, :sexo, :vaga)";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':ano', $ano);
     $stmt->bindParam(':serie', $serie);
@@ -52,8 +52,9 @@ if ($action == "inserir_aluno") {
     $stmt->bindParam(':cpfresponsavel', $cpfresponsavel);
     $stmt->bindParam(':cpf', $cpf);
     $stmt->bindParam(':nome', $nome);
+    $stmt->bindParam(':nascimento', $nascimento);
     $stmt->bindParam(':sexo', $sexo);
-    $stmt->bindParam(':vaga', $vaga);
+    $stmt->bindParam(':vaga', $vagas);
 
     if ($stmt->execute()) {
         echo "Salvo com Sucesso!";
@@ -63,6 +64,7 @@ if ($action == "inserir_aluno") {
         unset($cpfresponsavel);
         unset($cpf);
         unset($nome);
+        unset($nascimento);
         unset($sexo);
         unset($vaga);
         //header('Location: index.php');
@@ -84,6 +86,7 @@ if ($_POST["action"] == "buscarCpfresponsavel") {
         $output['cpfresponsavel'] = $row['cpfresponsavel'];
         $output['cpf'] = $row['cpf'];
         $output['nome'] = $row['nome'];
+        $output['nascimento'] = $row['nascimento'];
         $output['sexo'] = $row['sexo'];
         $output['vaga'] = $row['vaga'];
 
@@ -92,8 +95,8 @@ if ($_POST["action"] == "buscarCpfresponsavel") {
 }
 if ($_POST["action"] == "atualizar") {
     $conn = getConnection();
-    $sql = "UPDATE casamatricula (ano, serie, turno, cpfresponsavel, cpf, nome, sexo, vaga)
-			VALUES (:ano, :serie, :turno, :cpfresponsavel, :cpf, :nome, :sexo, :vaga)";
+    $sql = "UPDATE casamatricula (ano, serie, turno, cpfresponsavel, cpf, nome,nascimento, sexo, vaga)
+			VALUES (:ano, :serie, :turno, :cpfresponsavel, :cpf, :nome, :nascimento :sexo, :vaga)";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':ano', $ano);
     $stmt->bindParam(':serie', $serie);
@@ -101,6 +104,7 @@ if ($_POST["action"] == "atualizar") {
     $stmt->bindParam(':cpfresponsavel', $cpfresponsavel);
     $stmt->bindParam(':cpf', $cpf);
     $stmt->bindParam(':nome', $nome);
+    $stmt->bindParam(':nascimento', $nascimento);
     $stmt->bindParam(':sexo', $sexo);
     $stmt->bindParam(':vaga', $vaga);
 
@@ -112,6 +116,7 @@ if ($_POST["action"] == "atualizar") {
         unset($cpfresponsavel);
         unset($cpf);
         unset($nome);
+        unset($nascimento);
         unset($sexo);
         unset($vaga); //header('Location: index.php');
     } else {

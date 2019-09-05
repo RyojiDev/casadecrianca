@@ -3,12 +3,18 @@
 <?php
     include './connection.php';
     include './functions.php';
+
+
+
     $ano = 2019;
     $cpf = filter_input(INPUT_POST,'cpf',FILTER_SANITIZE_STRING);
-    $senha = filter_input(INPUT_POST,'senha',FILTER_SANITIZE_STRING);
+    $senha = md5(filter_input(INPUT_POST,'senha',FILTER_SANITIZE_STRING));
     $nome = filter_input(INPUT_POST,'nome',FILTER_SANITIZE_STRING);
     $telefone = filter_input(INPUT_POST,'tel',FILTER_SANITIZE_STRING);
     $email = filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
+
+
+
     // Removendo caracteres ao salvar no banco.
     $cpf = str_replace(".", "", $cpf);
     $cpf = str_replace("-", "", $cpf);
@@ -71,6 +77,8 @@
             }
 
         }
+
+        //Olhar e apagar...
         function SeriesMenor($ano, $dataNascimento, $turno) {
             $conn = getConnection();
             $sql = "SELECT serie, serie_longa, vagas FROM casaserie where ano = ".$ano. " and turno='".$turno. "' and '".$dataNascimento."' between data_referencia_ini and data_referencia_fim order by data_referencia";
@@ -85,6 +93,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Colégio Casa de Criança</title>
+       
         <?php include("import_css.phtml"); ?>
 		<link rel="icon" href="favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
@@ -94,7 +103,7 @@
 
 	</head>
 	<body>
-        <div id="carregando">
+        <div  id="carregando">
     <div id="content">
         <div id="inner-content">
         <?php include ('menu_bar.php') ?>
@@ -105,125 +114,122 @@
 		</header>
 
         <?php
+
+
+
         $ano = $casaresponsavel[0]['ano'];
         $cpf = $casaresponsavel[0]['cpf'];
+
         $sql = "SELECT serie, turno, serie_longa, data_referencia_ini, data_referencia_fim FROM casaserie where ano = ".$ano." order by data_referencia_ini";
         $result = $conn->query( $sql );
         $casaserie = $result->fetchAll();
+
         //print_r( $casaserie );
+
         $sql = "SELECT casamatricula.*, casaserie.* FROM casamatricula  INNER JOIN casaserie on casamatricula.serie = casaserie.serie where casamatricula.ano = ".$ano." and casamatricula.cpfresponsavel = ".$cpf." and casamatricula.turno = casaserie.turno order by casamatricula.nascimento" ;
+        // echo $sql;
         $result = $conn->query( $sql );
         $casamatricula = $result->fetchAll();
         //print_r( $casamatricula );
 
-        $size = count($casaserie);
-        /*
-        echo  "Size:".$size. "<br/>";
-        for ($i = 0; $i < $size; $i++) {
-             $value = $casaserie[$i]['serie']. "<br/>";
-            echo $value;
-        }
-        */
+
 
         ?>
 
-
-
-     <div class="container">
-    <form class="form-horizontal" name="matricula_form" id="matricula_form" method="get">
-        <input type="hidden" value="<?php echo formatCnpjCpf($cpf) ?>" id="cpf_responsavel">
-            
-    <div class="row">
-            <div class="form-group col-6">
-                <label for="cpf">CPF</label>
-                <input type="text" class="form-control mr-2 cpf" name="cpf" id="cpf" required="required" maxlength="11" size="8">
-            </div>
-            <!-- div cpf -->
-
-
-            <div class="form-group col-6">
-                <label for="Nome">Nome</label>
-                <input class="form-control mr-2 " type="text" name="nome" id="nome" required="required">
-            </div>
-            <!-- div nome -->
-    </div>
-   
-
-        
-
-        
-
-    <div class="row">
-            <div class="form-group col-4">
-                <label for="nascimento">Nascimento</label>
-                <input class="form-control" type="text" id="nascimento" name="nascimento" required="required" onkeyup="MascaraData(this.id)">
-            </div>
-            <!-- div nascimento -->
-           
-
-            <div class="form-group col-3">
-                <label for="Sexo">Sexo</label>
-                <select class="form-control" name="sexo" id="sexo">
-                    <option value=""></option>
-                    <option value="M">Masculino</option>
-                    <option value="F">Feminino</option>
-                </select>
-            </div>
-            <!--div select Sexo-->
+<div class="card text-center bg-primary my-5 col-6" id="enquantocarrega">
+  <div class="card-header">
+    Aguarde...
+  </div>
+  <div class="card-body">
     
+    <p class="card-text">   <h1><?php 
+     header ('Content-type: text/html; charset=UTF-8');
+    echo $cabecalho = $casamatriculaconfig[0]['descricao'];?></p>
+   
+  </div>
+  <div class="card-footer text-muted">
+    
+  </div>
+</div>
+
+
+        
+
+
             
 
-            <div class="form-group col-3">
-                <label for="turno">Turno</label>
-                <!-- <select class="form-control" name="turno" id="turno" onchange="atualizarSeries()"> -->
-                <select class="form-control" name="turno" id="turno" onchange="serieConsulta()">
-                    <option value=""></option>
-                    <?php
-                        $sql_turno = "SELECT DISTINCT turno FROM casaserie";
-                        $sql_turno = $conn->query( $sql_turno );
-                        $result_turno = $sql_turno->fetchAll();
-                        foreach ($result_turno as $campo)
-                        {
-                            echo '<option value='.$campo['turno'].'>'.turno($campo['turno']).'</option>';
-                        }
-                    ?>
-                </select>
-            </div>
-            <!--- div turno -->
+<div id="aguardando">
+     <div class="container">
+         <form class="form-horizontal " name="matricula_form" id="matricula_form" method="get">
+             <input type="hidden" value="<?php echo formatCnpjCpf($cpf) ?>" id="cpf_responsavel">
 
-            <div class="form-group col-2">
-                <label for="serie">Serie</label>
-                <input type="hidden" value="" id="serie_number">
-                <input type="text" name="serie" id="serie" class="form-control" required="required"  disabled>
+             <div class="row">
+                 <div class="form-group col-sm-4 col-lg-2">
+                     <label for="cpf">CPF</label>
+                     <input type="text" class="form-control mr-2 cpf" name="cpf" id="cpf" required="required" maxlength="11" size="8" onkeyup="cpfConsulta()" >
+                 </div>
+                 <!-- div cpf -->
+
+
+                 <div class="form-group col-sm-4 col-lg-4">
+                     <label for="Nome">Nome</label>
+                     <input class="form-control mr-2 " type="text" name="nome" id="nome"  required="required" disabled>
+                 </div>
+                 <!-- div nome -->
+
+                 <div class="form-group col-sm-2 col-lg-2">
+                     <label for="Sexo">Sexo</label>
+                     <select class="form-control" name="sexo" id="sexo">
+                         <option value=""></option>
+                         <option value="M">Masculino</option>
+                         <option value="F">Feminino</option>
+                     </select>
+                 </div>
+                 <!--div select Sexo-->
+    </div>
+
+
+        <div class="row">
+
+
+            <div class="form-group col-sm-2 col-lg-2">
+                    <label for="nascimento">Nascimento</label>
+                    <input class="form-control" type="text" id="nascimento" name="nascimento" required="required" onkeyup="MascaraData(this.id)" onchange="serieTurno()">
+
+            </div>
+                <!-- div nascimento -->
+
+            <div class="form-group col-sm-2 col-lg-2">
+                    <label for="turno">Turno</label>
+                    <!-- <select class="form-control" name="turno" id="turno" onchange="atualizarSeries()"> -->
+                    <select class="form-control" name="turno" id="turno" onchange="serieConsulta()">
+
+                    </select>
+            </div>
+                <!--- div turno -->
+
+            <div class="form-group col-sm-2 col-lg-2">
+                    <label for="serie">Serie</label>
+                    <input type="hidden" value="" id="serie_number">
+                    <input type="text" name="serie" id="serie" class="form-control" required="required"  disabled>
             </div>
 
-        
+            <div class="form-group col-sm-2 col-lg-4">
+                    <input type="button" class="btn btn-primary" id="adicionar_aluno"  value="Adicionar" />
             </div>
-        
-            <div class="form-group">
-                <input type="button" class="btn btn-primary" id="adicionar_aluno" onclick="Enviar();" value="Adicionar" />
-            </div>
-              
+
+        </div>
 
     </form>   <!-- matricula_form -->
 
-<div class="container border">
-    <?php  echo '<br> Faixa de Datas:<br>';
-        foreach ($casaserie as $campo)
-        {
-            echo '<br>'.$campo['serie'].' - '.$campo['turno'].' - '.$campo['serie_longa'].' - '.$campo['data_referencia_ini'].' - '.$campo['data_referencia_fim'];
-            //echo $campo['ano'].' - '.$campo['serie'].' - '.$campo['serie_longa'].' - '.$campo['vagas'].' - '.$campo[5].'<br>';
-        }?>
+<div class="container">
+
                         </div><!-- div inner Content -->
             </div><!----- div content -->
-
-
-
-            <?php
-
-$tabela = "<table class=' table table-striped table thead-light' id='tabela_matricula'>
+<div class="container">
+<table class=' table table-striped table thead-light' id='tabela_matricula'>
       <thead class='thead-light'>
-          <tr>
+          <tr class="text-center">
               <th>CPF</th>
               <th>Nome</th>
               <th>Sexo</th>
@@ -231,27 +237,19 @@ $tabela = "<table class=' table table-striped table thead-light' id='tabela_matr
               <th>Turno</th>
               <th>Série</th>
               <th>Status</th>
-              <th></th>
+              <th>#</th>
           </tr>
       </thead>
-      <tbody>
-      <tr>";
-$return = "$tabela";
-foreach ($casamatricula as $campo)
-{
-$return.= "<td>" . formatCnpjCpf(utf8_encode($campo["cpf"])) . "</td>";
-$return.= "<td>" . utf8_encode($campo["nome"]) . "</td>";
-$return.= "<td>" . utf8_encode($campo["sexo"]) . "</td>";
-$return.= "<td>" . formataData(utf8_encode($campo["nascimento"])) . "</td>";
-$return.= "<td>" . turno(utf8_encode($campo["turno"])) . "</td>";
-$return.= "<td>" . utf8_encode($campo["serie"]) ."-".utf8_encode($campo["serie_longa"]). "</td>";
-$return.= "<td>" . status($campo["vagas"],$campo["vaga"])."</td>";
-$return.= "<td>" . statusArquivo($campo["vagas"],$campo["vaga"],$campo["caminho_pdf"])."</td>";
-$return.= "</tr>";
-}
+      <tbody id="tabela_matricula_body">
+      <tr>
 
-echo $return.="</tbody></table>";
-?>
+
+
+
+</div>
+
+
+
 </div>
 
 </div> <!-- container -->
@@ -259,6 +257,14 @@ echo $return.="</tbody></table>";
 
 <!--- importa todas as classes js, para serem carregados em todas as paginas, é só digitar esse comando -->
 <?php include("import.phtml"); ?>
+
 </div>
+</div>
+
+
+
+</div>
+
+
 	</body>
 </html>

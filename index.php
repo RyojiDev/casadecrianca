@@ -7,12 +7,25 @@
 		<link rel="icon" href="favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
-	<?php	include ('import_css.phtml'); ?>
+	<?php	include ('import_css.phtml');
+	include './connection.php';
+	include './functions.php';
+	?>
 <?php
+
+$ano = 2019;
+
+	$conn = getConnection();
+	$sql = "SELECT * FROM casamatriculaconfig where ano = $ano";
+	$result = $conn->query( $sql );
+	$casamatriculaconfig = $result->fetchAll();
+	$cabecalho = $casamatriculaconfig[0]['cabecalho'];
+
 if (isset($_POST) && !empty($_POST)){
 	echo '<pre>';
 	print_r($_POST);
 	echo '</pre>';
+
 }
 
 
@@ -23,7 +36,7 @@ if (isset($_POST) && !empty($_POST)){
 <div id="carregando">
 		<header>
 			<div class="container block">
-				<h2 class="text-center text-color-white">Pré-Matrícula de Novatos para 2020</h2>
+				<h2 class="text-center text-color-white"><?php echo utf8_encode($cabecalho);?></h2>
 			</div>
 		</header>
 
@@ -56,7 +69,7 @@ if (isset($_POST) && !empty($_POST)){
 					</div>
 					<div class="container">
 						<button class="btn btn-success btn-block" type="submit" value="Próxima">Próxima</button>
-						<button class="btn btn-success  btn-block" data-toggle="modal" data-target="#modal_cadastro" href='cadastro.php'>Criar</button>
+						<button class="btn btn-success  btn-block" id="criar_responsavel" data-toggle="modal" data-target="#modal_cadastro" >Criar</button>
 						</div>
 					</div>
 					</div>
@@ -83,11 +96,11 @@ if (isset($_POST) && !empty($_POST)){
 								<div class="form-group">
 									<label for="cnpjCliente" class="control-label">CPF</label>
 									<div class="input-group">
-										<input required type="text" class="form-control cpf" id="cpf" name="cpf"
+										<input required type="text" class="form-control cpf valida" id="cpf" name="cpf"
 											placeholder="000.000.000-00">
 									</div>
 									<label for="senha" class="control-label">Senha</label>
-									<input required type="password" class="form-control" id="senha" name="senha"
+									<input required type="password" class="form-control valida" id="senha" name="senha"
 										placeholder="Digite sua Senha">
 								</div>
 
@@ -103,7 +116,7 @@ if (isset($_POST) && !empty($_POST)){
 									<div class="form-group">
 									<label for="telefone" class="control-label">Telefone</label>
 									<div class="input-group">
-										<input required type="text" class="form-control telefone" id="telefone" name="telefone"
+										<input required type="text" class="form-control telefone " id="telefone" name="telefone"
 											placeholder="(00)0-0000-000">
 									</div>
 									<br>
@@ -111,7 +124,7 @@ if (isset($_POST) && !empty($_POST)){
 									<div class="form-group">
 									<label for="Email" class="control-label">Email</label>
 									<div class="input-group">
-										<input required type="text" class="form-control email" id="email" name="email"
+										<input required type="text" class="form-control email valida" id="email" name="email"
 											placeholder="Digite o Email">
 									</div>
 									<br>
@@ -126,5 +139,7 @@ if (isset($_POST) && !empty($_POST)){
 <?php include("import.phtml"); ?>
 
 </div>
+
 	</body>
+	
 </html>

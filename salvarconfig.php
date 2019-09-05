@@ -10,7 +10,17 @@
     $cabecalho  = $_POST["cabecalho"];
     $descricao  = $_POST["descricao"];
 	$observacao = $_POST["observacao"];
+
+	$data = new DateTime();
+
+	$data_inicio = $data->format('Y-m-d');
+	echo $data->format('Y-m-d H:i:s');
 	
+
+	
+	
+    
+
 	
 	
 	if (isset($_POST) && !empty($_POST)){

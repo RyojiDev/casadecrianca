@@ -16,6 +16,7 @@ function turno($value) {
 }
 
 function formataData($value){
+  if ($value=="0000-00-00") return "00/00/0000";
   $value = strtotime($value);
   $new_date = date("d-m-Y", $value);
   $value = str_replace('-', '/', $new_date);
@@ -29,13 +30,18 @@ function removepontocpf($cpf){
 }
 
 function status($vagasSerie, $vagaAluno){
-  if ($vagaAluno<=$vagasSerie) return "Pré-Matriculado";
-  else                         return "Não Matriculado";
+  //echo "Série:".$vagasSerie;
+  //echo "Aluno:".$vagaAluno;
+  //echo "<br>" ;
+  if ($vagasSerie==0)                            return "Sem oferta de Vagas";
+  if ($vagaAluno > 0 and $vagaAluno<=$vagasSerie) return "Pré-Matriculado";
+  else                                           return "Não Matriculado";
 }
 
 function statusArquivo($vagasSerie, $vagaAluno, $arquivo){
-  if ($vagaAluno<=$vagasSerie) return '<a href="'.$arquivo.'">Ficha de Matrícula</a>';
-  else                         return "";
+  if ($vagasSerie==0) return "";
+  if ($vagaAluno<=$vagasSerie && $vagaAluno > 0) return '<a href="'.$arquivo.'">Ficha de Matrícula</a>';
+  else                                           return "";
 }
 
 

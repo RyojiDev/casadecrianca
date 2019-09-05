@@ -2,6 +2,12 @@ $(document).ready(function() {
 
     function block() {
 
+        $("#cpf").val("");
+        $("#nome").val("");
+        $("#sexo").val("");
+        $("#nascimento").val("");
+        $("#turno").val("");
+        $("#serie").val("");
         $.blockUI({
             message: "Aguarde...",
             css: {
@@ -54,25 +60,83 @@ $(document).ready(function() {
 
     });
 
-    $("#salvar_confirm").click(function(e) {
+    $("#cpf").keyup(validarForm_Responsavel);
+    $("#senha").keyup(validarForm_Responsavel);
+    $("#nome").keyup(validarForm_Responsavel);
+    $("#telefone").keyup(validarForm_Responsavel);
+    $("#email").keyup(validarForm_Responsavel);
 
 
-        $.ajax({
-            url: "cadastro.php",
-            type: 'POST',
-            data: $("#form_cadastro").serialize(),
-            success: function(data) {
-                $("#receber_dados").html(data);
-                $.growl.notice({ message: "Responsavel, Salvo Com sucesso!" });
-                $("#modal_cadastro").modal("hide");
+    validarForm_Responsavel();
 
-            }
+    function validarForm_Responsavel() {
 
-        });
+        if ($("#cpf").val().length > 0 && $("#senha").val().length > 0 && $("#nome").val().length > 0 && $("#telefone").val().length > 0 && ($("#email").val().length > 0)) {
+            return true;
+
+        } else {
+            return false;
+
+        }
+    }
 
 
+    $("#criar_responsavel").click(function() {
+        $("#cpf").val("");
+        $("#senha").val("");
+        $("#nome").val("");
+        $("#telefone").val("");
+        $("#email").val("");
 
     });
+
+
+
+
+
+    $("#salvar_confirm").click(function(e) {
+
+        if (validarForm_Responsavel() == true) {
+
+            $.ajax({
+                url: "cadastro.php",
+                type: 'POST',
+                data: $("#form_cadastro").serialize(),
+                success: function(data) {
+                    console.log(data.length);
+                    $("#receber_dados").html(data);
+                    $.growl.notice({ title: "Responsável", message: "Salvo Com sucesso!" });
+                    $("#modal_cadastro").modal("hide");
+
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("deu erro");
+                    return false;
+                }
+
+
+
+            });
+
+        } else {
+
+
+            $.growl.warning({ title: "Responsável", message: "Favor, Verificar Todos os dados preenchidos e tente novamente" });
+
+
+        }
+
+    });
+
+
+
+
+
+
+
+
+
+
 
     $("#nascimento").datepicker({
         format: 'dd/mm/yyyy',

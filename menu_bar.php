@@ -19,7 +19,9 @@
                 <li class="nav-item mr-auto texto-menu">
                         <div class="row">
                         <h2 class="text-center text-justify texto-titulo col-12"><?php echo utf8_encode($cabecalho);?></h2>
- <div class="container border">                      
+
+                  
+ <div class="container">                      
 <div class="row">
     <div class="container">
 
@@ -30,7 +32,7 @@
 <p class="texto-cpf"><?php echo "CPF: ".formatCnpjCpf($cpf) ?></p>
 </div>
 </div>
-<div class="container border col-8">
+<div class="container col-8">
 <h6 class="text-center texto-nome"><?php echo $nome ?></h6>
 </div>
 </div>                        

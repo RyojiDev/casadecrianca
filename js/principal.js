@@ -2,18 +2,128 @@
 
 window.onload = function() {
 
+    function block() {
+
+        $("#cpf").val("");
+        $("#nome").val("");
+        $("#sexo").val("");
+        $("#nascimento").val("");
+        $("#turno").val("");
+        $("#serie").val("");
+        $.blockUI({
+            message: "Aguarde...",
+            css: {
+                border: "none",
+                padding: "15px",
+                backgroundColor: "#000",
+                "-webkit-border-radius": "10px",
+                "-moz-border-radius": "10px",
+                opacity: .5,
+                color: "#fff",
+                "font-size": "16px",
+                "font-weight": "bold"
+
+            }
+
+        });
+    }
+
+    var data = new Date();
 
 
 
+    console.log("datas sao iguais");
+
+
+    var count = 0;
+    var aguardando = window.setInterval(function() {
+        block();
+
+        $("#aguardando").hide();
+
+
+        $.ajax({
+            url: "selecionarConfig.php",
+            type: "POST",
+            data: data,
+            success: function(data) {
+                console.log(data);
+                if (data == "true") {
+                    window.clearInterval(aguardando);
+                    $("#enquantocarrega").hide();
+                    $.unblockUI();
+                    $("#aguardando").fadeIn();
+                }
+            }
+        });
+
+        console.log(count);
 
 
 
+        console.log(data)
+
+        count++;
+    }, 1000);
 }
 
 function Teste() {
     alert("cheguei aqui");
     return "XXXXX";
 }
+
+function serieTurno() {
+    var nascimento = document.getElementById("nascimento").value;
+    //var serie = document.getElementById("serie").value;
+    console.log(nascimento);
+
+
+    var dados = { nascimento }
+    console.log(dados);
+
+    $.ajax({
+        url: "serieTurno.php",
+        type: "GET",
+        data: dados,
+
+    }).done(function(response) {
+        console.log(response);
+        $('#turno').html(response);
+        $("#serie_number").val('');
+        $("#serie").val('');
+
+    });
+}
+
+function cpfConsulta() {
+    var cpf = document.getElementById("cpf").value;
+
+    if (cpf.length != 14) return;
+
+    var dados = { cpf }
+    console.log(dados);
+
+    $.ajax({
+        url: "selecionarCPF.php",
+        type: "GET",
+        data: dados,
+
+    }).done(function(response) {
+        console.log(response);
+        if (response > 0) {
+            $("#nome").val('');
+            $("#nome").prop("disabled", true);
+            $.growl.warning({ title: "Responsável", message: ` O CPF: ${response} já consta no cadastro` });
+            $("#adicionar_aluno").hide();
+
+
+        } else {
+            $("#nome").prop("disabled", false);
+
+        }
+    });
+}
+
 
 function serieConsulta() {
     var nascimento = document.getElementById("nascimento").value;
@@ -42,24 +152,6 @@ function serieConsulta() {
 
 
 }
-
-var titulo = document.getElementById("h2");
-
-function Enviar() {
-    var cpf = document.getElementById("cpf");
-    var nome = document.getElementById("nome");
-    var sexo = document.getElementById("sexo");
-    var nascimento = document.getElementById("nascimento");
-    var turno = document.getElementById("turno");
-    var serie = document.getElementById("serie");
-
-    if (cpf.value != "") {
-        alert('Obrigado sr(a) ' + cpf.value + nome.value + sexo.value + nascimento.value + turno.value +
-            serie.value + ' os seus dados foram encaminhados com sucesso');
-    }
-
-}
-
 
 
 

@@ -251,7 +251,7 @@
 
     <div class="row">
         <div class="form-group col-2">
-            <input type="button" class="btn btn-primary" onclick="Enviar();" value="Adicionar" />
+            <input type="button" class="btn btn-primary" value="Adicionar" />
         </div>
     </div>
 
