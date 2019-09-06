@@ -17,19 +17,19 @@
             $telefone = str_replace("(", "", $telefone);
             $telefone = str_replace(")", "", $telefone);
             $telefone = str_replace("-", "", $telefone);
-        
+
                 //echo "CPF:".$cpf;
                 //echo " Ano:".$ano;
                 //echo $senha;
                 //echo "   NOME:".$nome;
                // echo $telefone;
                // echo $email;
-        
-        
+
+
                 if (!empty($cpf) && !empty($senha) && empty($nome) ){
-        
+
                     $conn = getConnection();
-                    $sql = "SELECT * FROM casaresponsavel where cpf = " .$cpf." and senha = '".$senha."';";
+                    $sql = "SELECT * FROM casaresponsavel where cpf = '" .$cpf."'' and senha = '".$senha."';";
                 // echo $sql;
                     $result = $conn->query( $sql );
                     $casaresponsavel = $result->fetchAll();
@@ -42,10 +42,10 @@
                       //  print_r( $casaresponsavel );
                     }
                 }
-        
+
                 if (!empty($cpf) && !empty($senha) && !empty($nome) && !empty($telefone) && !empty($email) ){
                     include './connection.php';
-        
+
                     $conn = getConnection();
                     $sql = "INSERT INTO casaresponsavel (ano, cpf, nome, senha, telefone, email)
                     VALUES (:ano, :cpf, :nome, :senha, :telefone, :email)";
@@ -65,7 +65,7 @@
                     } else {
                         echo "Erro ao Salvar!";
                     }
-        
+
                 }
                 function SeriesMenor($ano, $dataNascimento, $turno) {
                     $conn = getConnection();
@@ -74,7 +74,7 @@
                     $casaserie = $result->fetchAll();
                     return $casaserie;
                   }
-        
+
                 ?>
 
 
@@ -137,13 +137,13 @@
         <h4><p><?php echo "CPF:".formatCnpjCpf($cpf) ?></p></h4>
         <h6><?php echo $nome ?></h6>
         <!-- </a> -->
-        
+
     </li>
                      <li>
                     <a href="#">About</a>
                 </li>
-                
-                  
+
+
             </ul>
 
             <ul class="list-unstyled CTAs">
@@ -156,7 +156,7 @@
             </ul>
         </nav>
 
-        
+
         <div id="content">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -267,11 +267,11 @@
             }?>
                             </div><!-- div inner Content -->
                 </div><!----- div content -->
-    
-    
-    
+
+
+
             <?php
-    
+
                   $tabela = "<table class=' table table-striped table thead-light' id='tabela_matricula'>
                         <thead class='thead-light'>
                             <tr>
@@ -296,10 +296,10 @@
                 $return.= "<td>" . utf8_encode($campo["vaga"]) . "</td>";
                 $return.= "</tr>";
             }
-    
+
             echo $return.="</tbody></table>";
     ?>
-    
+
     <!--- importa todas as classes js, para serem carregados em todas as paginas, é só digitar esse comando -->
     <?php include("import.phtml"); ?>
 

@@ -18,7 +18,6 @@ window.onload = function() {
                 backgroundColor: "#000",
                 "-webkit-border-radius": "10px",
                 "-moz-border-radius": "10px",
-                opacity: .5,
                 color: "#fff",
                 "font-size": "16px",
                 "font-weight": "bold"
@@ -37,7 +36,7 @@ window.onload = function() {
 
     var count = 0;
     var aguardando = window.setInterval(function() {
-        block();
+
 
         $("#aguardando").hide();
 

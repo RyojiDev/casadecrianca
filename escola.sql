@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Ago-2019 às 14:57
+-- Generation Time: 06-Set-2019 às 00:02
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.1.28
 
@@ -32,23 +32,14 @@ CREATE TABLE `casamatricula` (
   `ano` int(4) NOT NULL,
   `serie` int(2) NOT NULL,
   `turno` varchar(1) NOT NULL,
-  `cpfresponsavel` bigint(11) NOT NULL,
-  `cpf` bigint(11) NOT NULL,
+  `cpfresponsavel` varchar(11) NOT NULL,
+  `cpf` varchar(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `sexo` varchar(1) NOT NULL,
   `nascimento` date NOT NULL,
   `data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `vaga` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `casamatricula`
---
-
-INSERT INTO `casamatricula` (`ano`, `serie`, `turno`, `cpfresponsavel`, `cpf`, `nome`, `sexo`, `nascimento`, `data`, `vaga`) VALUES
-(2019, 15, 'M', 64906132391, 64906132391, 'Rodrigo Sousa', 'M', '2019-01-09', '2019-08-19 09:12:18', 0),
-(2019, 4, 'M', 96919884372, 12312312312, 'Rayane Andrade Rodrigues', 'F', '2015-11-23', '2019-08-27 08:12:36', 1),
-(2019, 3, 'M', 96919884372, 64906132391, 'Rodrigo Filho Sousa', 'M', '2017-11-14', '2019-08-26 16:54:09', 1);
 
 -- --------------------------------------------------------
 
@@ -58,8 +49,8 @@ INSERT INTO `casamatricula` (`ano`, `serie`, `turno`, `cpfresponsavel`, `cpf`, `
 
 CREATE TABLE `casamatriculaconfig` (
   `ano` int(4) NOT NULL,
-  `data` date NOT NULL,
-  `hora` varchar(6) NOT NULL,
+  `data_ini` date NOT NULL,
+  `hora_ini` varchar(6) NOT NULL,
   `data_fim` date NOT NULL,
   `hora_fim` varchar(6) NOT NULL,
   `cabecalho` varchar(100) NOT NULL,
@@ -71,8 +62,8 @@ CREATE TABLE `casamatriculaconfig` (
 -- Extraindo dados da tabela `casamatriculaconfig`
 --
 
-INSERT INTO `casamatriculaconfig` (`ano`, `data`, `hora`, `data_fim`, `hora_fim`, `cabecalho`, `descricao`, `observacao`) VALUES
-(2019, '2019-08-16', '080000', '2019-08-23', '235959', 'Matrícula de Novatos de 2019', 'Após o cadastro do aluno a matrícula será validada com a verificação dos dados.', 'Teremos 20 vagas pata cada séries que só será registrada após concluir o cadastro, caso não  tenha vagas disponíveis, o aluno(a) entrará para uma fila de espera.');
+INSERT INTO `casamatriculaconfig` (`ano`, `data_ini`, `hora_ini`, `data_fim`, `hora_fim`, `cabecalho`, `descricao`, `observacao`) VALUES
+(2019, '2019-09-01', '080000', '2019-09-07', '150000', 'Matrícula de Novatos para 2020', 'Após o cadastro do aluno a matrícula será validada com a verificação dos dados.', 'Teremos 20 vagas pata cada séries que só será registrada após concluir o cadastro, caso não  tenha vagas disponíveis, o aluno(a) entrará para uma fila de espera.');
 
 -- --------------------------------------------------------
 
@@ -82,21 +73,12 @@ INSERT INTO `casamatriculaconfig` (`ano`, `data`, `hora`, `data_fim`, `hora_fim`
 
 CREATE TABLE `casaresponsavel` (
   `ano` int(4) NOT NULL,
-  `cpf` bigint(11) NOT NULL,
+  `cpf` varchar(11) NOT NULL,
   `nome` varchar(80) NOT NULL,
   `senha` varchar(80) NOT NULL,
   `telefone` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `casaresponsavel`
---
-
-INSERT INTO `casaresponsavel` (`ano`, `cpf`, `nome`, `senha`, `telefone`, `email`) VALUES
-(2019, 9999999999, 'Rodrigo 99999999', 'ef775988943825d2871e1cfa75473ec0', '99 9999999', '99999999@99999999.com.br'),
-(2019, 64906132391, 'Rodrigo Sousa Rodrigues', '@Rodrigo@', '85987735777', 'rodrigo@computex.com.br'),
-(2019, 96919884372, 'RosÃ¢ngela', 'aaaa', '85987735777', 'rosangelaandradeleite@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -122,9 +104,12 @@ CREATE TABLE `casaserie` (
 --
 
 INSERT INTO `casaserie` (`ano`, `serie`, `turno`, `serie_longa`, `data_referencia_ini`, `data_referencia_fim`, `vagas`, `matriculados`, `caminho_pdf`, `observacao`) VALUES
-(2019, 2, 'M', 'Infantil II', '2017-04-01', '2018-03-31', 20, 1, 'ficha.pdf', 'Só pode fazer matrícula alunos nascidos até 31 de Março de 2019'),
-(2019, 3, 'M', 'Infantil III', '2016-04-01', '2017-03-31', 30, 1, 'ficha.pdf', 'Olha a data de nascimento.'),
-(2019, 3, 'T', 'Infantil III', '2016-04-01', '2017-03-31', 20, 1, '', '');
+(2019, 0, 'M', 'Berçário', '2019-04-01', '2019-08-15', 0, 3, '', ''),
+(2019, 0, 'T', 'Berçário', '2019-04-01', '2019-08-15', 8, 9, '', ''),
+(2019, 1, 'M', 'Infantil I', '2018-04-01', '2018-11-30', 28, 1, '2019 [1-3].pdf', ''),
+(2019, 1, 'T', 'Infantil I', '2018-04-01', '2018-11-30', 42, 1, '2019 [1-3].pdf', ''),
+(2019, 2, 'M', 'Infantil II', '2017-04-01', '2018-03-31', 1, 2, '2019 [1-3].pdf', ''),
+(2019, 2, 'T', 'Infantil II', '2017-04-01', '2018-03-31', 48, 2, '2019 [1-3].pdf', '');
 
 --
 -- Indexes for dumped tables

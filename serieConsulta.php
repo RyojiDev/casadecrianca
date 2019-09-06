@@ -18,7 +18,7 @@
     // echo $nascimento;
     // echo $turno;
     // echo "</pre>";
-    
+
 
     if (($turno != "") || ($nascimento != ""))  {
       $conn = getConnection();
@@ -29,14 +29,14 @@
 
       foreach ($casaserie as $campo)
         {
-            echo $campo['serie'].'-'.$campo['serie_longa'];
-           
-            
-            
+            echo $campo['serie'].'-'.utf8_encode($campo['serie_longa']);
+
+
+
         }
       return $casaserie;
     }else{
-     
+
       echo "não foi possivel consultar";
     }
 ?>

@@ -33,9 +33,9 @@ function status($vagasSerie, $vagaAluno){
   //echo "Série:".$vagasSerie;
   //echo "Aluno:".$vagaAluno;
   //echo "<br>" ;
-  if ($vagasSerie==0)                            return "Sem oferta de Vagas";
+  if ($vagasSerie==0)                             return "Sem oferta de Vagas";
   if ($vagaAluno > 0 and $vagaAluno<=$vagasSerie) return "Pré-Matriculado";
-  else                                           return "Não Matriculado";
+  else                                            return  "Na fila, aguarde contato";
 }
 
 function statusArquivo($vagasSerie, $vagaAluno, $arquivo){

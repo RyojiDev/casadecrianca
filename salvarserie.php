@@ -3,18 +3,21 @@
 	include './functions.php';
 	
 	$ano                  = 2019;
-	$action               = $_POST["inserir_aluno"];
+	$action               = $_POST["action"];
     $serie                = $_POST["serie"];
     $turno                = $_POST["turno"];
     $serie_longa          = $_POST["serie_longa"];
-    $data_referencia_ini  = $_POST["data_referencia_ini"];
-    $data_referencia_fim  = $_POST["data_referencia_fim"];
+    $data_referencia_ini  = $_POST["data_ini"];
+    $data_referencia_fim  = $_POST["data_fim"];
     $vagas                = $_POST["vagas"];
     $matriculados         = $_POST["matriculados"];
 		$caminho_pdf          = $_POST["caminho_pdf"];
 		$observacao           = $_POST["observacao"];
 
-		
+
+		echo "<pre>";
+		print_r($_POST);
+		echo "</pre>";
 	
 		if($action == "inserir")
 		{

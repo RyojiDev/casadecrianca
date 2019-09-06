@@ -105,7 +105,7 @@ $(document).ready(function() {
                 success: function(data) {
                     console.log(data.length);
                     $("#receber_dados").html(data);
-                    $.growl.notice({ title: "Responsável", message: "Salvo Com sucesso!" });
+                    $.growl.notice({ title: "Cadastro", message: "Realizado com sucesso!" });
                     $("#modal_cadastro").modal("hide");
 
                 },
@@ -151,6 +151,32 @@ $(document).ready(function() {
         });
     });
 
+
+
+    var senha = $('#senha');
+    var olho = $("#olho");
+
+    olho.mousedown(function() {
+        senha.attr("type", "text");
+    });
+
+    olho.mouseup(function() {
+        senha.attr("type", "password");
+
+    });
+
+
+    var senha_login = $('#senha_login');
+    var olho_login = $("#olho_login");
+
+    olho_login.mousedown(function() {
+        senha_login.attr("type", "text");
+    });
+
+    olho_login.mouseup(function() {
+        senha_login.attr("type", "password");
+
+    });
 
 
 });

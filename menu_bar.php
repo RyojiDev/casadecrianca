@@ -4,7 +4,7 @@
 
     <div class="container">
 
-        <a class="navbar-brand h1 mb-0" href="Pré Matricula 2019">
+        <a class="navbar-brand h1 mb-0">
         <img class="icone-menu" src="img/casa_de_crianca_logo.png" class="img-responsive col-sm-2 col-md-4 col-lg-6" id="icon">
         </a>
 
@@ -20,8 +20,8 @@
                         <div class="row">
                         <h2 class="text-center text-justify texto-titulo col-12"><?php echo utf8_encode($cabecalho);?></h2>
 
-                  
- <div class="container">                      
+
+ <div class="container">
 <div class="row">
     <div class="container">
 
@@ -29,24 +29,24 @@
     <div class="container">
 
 
-<p class="texto-cpf"><?php echo "CPF: ".formatCnpjCpf($cpf) ?></p>
+<p class="texto-cpf"><?php echo $nome ?></p>
 </div>
 </div>
 <div class="container col-8">
-<h6 class="text-center texto-nome"><?php echo $nome ?></h6>
+<h6 class="text-center texto-nome"><?php echo "CPF: ".formatCnpjCpf($cpf) ?></h6>
 </div>
-</div>                        
+</div>
                         </div>
                     </div>
                 </li>
                 <li class="nav-item item-li-cpf texto-menu">
                     <!-- <a href="" id="">     -->
-                    
+
                     <!-- </a> -->
 
                 </li>
 
-                
+
 
             </ul>
 
@@ -54,10 +54,10 @@
             <li class="nav-item item-li">
                     <a href="index.php">
                         <h4 class="text-center texto-menu">Sair</h4>
-                       
+
                     </a>
                 </li>
-            
+
             </ul>
 
         </div>

@@ -11,7 +11,7 @@
   $hora_hoje = date('H:i:s');
   $hora_hoje = str_replace(":", "", $hora_hoje);
   //echo "Data Hj:".$data_hoje."<br>";
-  
+
   $conn = getConnection();
   $sql = "SELECT * FROM casamatriculaconfig where ano = ". $ano ." and '".$data_hoje."' between data_ini and data_fim" ;
   $result = $conn->query( $sql );
@@ -35,24 +35,24 @@
 //echo "Ano:".$ano." Hora Ini:".$hora_ini." Hora Fim:".$hora_fim ." Hoje:".$data_hoje ." Data Ini:". $data_ini ." Data Fim:". $data_fim."<br>";
 
 	  $retorno = 0;
-	  
+
 	  if ($data_hoje == $data_ini){if ($horaatual >= $hora_ini){ $retorno = 1;}}
-	  
+	  //Echo $retorno ."<br>" ;
 	  if ($data_hoje == $data_fim){ if ($horaatual <= $hora_fim){ $retorno = 1;}}
-	  
+	  //echo $horaatual ."<br>".$hora_fim;
 	  if ($data_hoje > $data_ini && $data_hoje < $data_fim) {$retorno = 1;}
-	  
+
       if ($retorno == 1) {
 		echo "true";
 		return true;
-		  
+
 	  } else {
 		echo "false";
 		return false;
 	  }
   } else {
 		echo "false";
-		return false; 
+		return false;
   }
 
 ?>

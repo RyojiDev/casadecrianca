@@ -39,9 +39,10 @@
         if (!empty($cpf) && !empty($senha) && empty($nome) ){
 
             $conn = getConnection();
-            $sql = "SELECT * FROM casaresponsavel where cpf = " .$cpf." and senha = '".$senha."';";
+            $sql = "SELECT * FROM casaresponsavel where cpf = '" .$cpf."' and senha = '".$senha."';";
         // echo $sql;
             $result = $conn->query( $sql );
+            //echo $count = $result->rowCount();
             $casaresponsavel = $result->fetchAll();
             $nome =  $casaresponsavel[0]['nome'];
            // echo $nome;
@@ -93,7 +94,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Colégio Casa de Criança</title>
-       
+
         <?php include("import_css.phtml"); ?>
 		<link rel="icon" href="favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
@@ -126,7 +127,7 @@
 
         //print_r( $casaserie );
 
-        $sql = "SELECT casamatricula.*, casaserie.* FROM casamatricula  INNER JOIN casaserie on casamatricula.serie = casaserie.serie where casamatricula.ano = ".$ano." and casamatricula.cpfresponsavel = ".$cpf." and casamatricula.turno = casaserie.turno order by casamatricula.nascimento" ;
+        $sql = "SELECT casamatricula.*, casaserie.* FROM casamatricula  INNER JOIN casaserie on casamatricula.serie = casaserie.serie where casamatricula.ano = ".$ano." and casamatricula.cpfresponsavel = '".$cpf."' and casamatricula.turno = casaserie.turno order by casamatricula.nascimento" ;
         // echo $sql;
         $result = $conn->query( $sql );
         $casamatricula = $result->fetchAll();
@@ -141,22 +142,21 @@
     Aguarde...
   </div>
   <div class="card-body">
-    
-    <p class="card-text">   <h1><?php 
-     header ('Content-type: text/html; charset=UTF-8');
-    echo $cabecalho = $casamatriculaconfig[0]['descricao'];?></p>
-   
+
+    <p class="card-text"><h1><?php
+     echo utf8_encode($cabecalho = $casamatriculaconfig[0]['descricao']);?></p>
+
   </div>
   <div class="card-footer text-muted">
-    
+
   </div>
 </div>
 
 
-        
 
 
-            
+
+
 
 <div id="aguardando">
      <div class="container">
@@ -166,20 +166,20 @@
              <div class="row">
                  <div class="form-group col-sm-4 col-lg-2">
                      <label for="cpf">CPF</label>
-                     <input type="text" class="form-control mr-2 cpf" name="cpf" id="cpf" required="required" maxlength="11" size="8" onkeyup="cpfConsulta()" >
+                     <input type="text" class="form-control mr-2 cpf" name="cpf" id="cpf" required="required" maxlength="11" size="8" placeholder="Aluno(a)" onkeyup="cpfConsulta()" >
                  </div>
                  <!-- div cpf -->
 
 
                  <div class="form-group col-sm-4 col-lg-4">
                      <label for="Nome">Nome</label>
-                     <input class="form-control mr-2 " type="text" name="nome" id="nome"  required="required" disabled>
+                     <input class="form-control mr-2 " type="text" name="nome" id="nome" placeholder="Aluno(a)" required="required" disabled>
                  </div>
                  <!-- div nome -->
 
                  <div class="form-group col-sm-2 col-lg-2">
                      <label for="Sexo">Sexo</label>
-                     <select class="form-control" name="sexo" id="sexo">
+                     <select class="form-control" name="sexo" id="sexo" >
                          <option value=""></option>
                          <option value="M">Masculino</option>
                          <option value="F">Feminino</option>
@@ -194,7 +194,7 @@
 
             <div class="form-group col-sm-2 col-lg-2">
                     <label for="nascimento">Nascimento</label>
-                    <input class="form-control" type="text" id="nascimento" name="nascimento" required="required" onkeyup="MascaraData(this.id)" onchange="serieTurno()">
+                    <input class="form-control" type="text" id="nascimento" name="nascimento" placeholder="Aluno(a)" required="required" onkeyup="MascaraData(this.id)" onchange="serieTurno()">
 
             </div>
                 <!-- div nascimento -->
@@ -209,7 +209,7 @@
                 <!--- div turno -->
 
             <div class="form-group col-sm-2 col-lg-2">
-                    <label for="serie">Serie</label>
+                    <label for="serie">Série</label>
                     <input type="hidden" value="" id="serie_number">
                     <input type="text" name="serie" id="serie" class="form-control" required="required"  disabled>
             </div>

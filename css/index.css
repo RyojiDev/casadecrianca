@@ -47,10 +47,27 @@ button:disabled {
 .form-login {
     padding: 8px;
     border-radius: 10px;
+    margin-top: 80px;
 }
 
 #adicionar_aluno {
     margin-bottom: 10px;
     margin-top: 15px;
     display: none;
+}
+
+#olho {
+    left: 10px;
+    position: relative;
+}
+
+.esqueci {
+    color: #ffff;
+    float: right;
+    font-size: 12px;
+    padding-bottom: 10px;
+}
+
+.olho_login {
+    float: right;
 }

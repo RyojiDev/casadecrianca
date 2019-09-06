@@ -10,7 +10,7 @@
     $cpf = $_POST['cpfresponsavel'];
     $cpf = removepontocpf($cpf);
     $conn = getConnection();
-    $sql = "SELECT casamatricula.*, casaserie.* FROM casamatricula  INNER JOIN casaserie on casamatricula.serie = casaserie.serie where casamatricula.ano = ".$ano." and casamatricula.cpfresponsavel = ".$cpf." and casamatricula.turno = casaserie.turno order by casamatricula.nascimento" ;
+    $sql = "SELECT casamatricula.*, casaserie.* FROM casamatricula  INNER JOIN casaserie on casamatricula.serie = casaserie.serie where casamatricula.ano = ".$ano." and casamatricula.cpfresponsavel = '".$cpf."' and casamatricula.turno = casaserie.turno order by casamatricula.nascimento" ;
 
     $result = $conn->query( $sql );
 
