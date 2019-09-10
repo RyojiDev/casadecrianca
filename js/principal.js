@@ -1,70 +1,5 @@
 // Essa Função Garante Que Os JavaScript, Só Vão Ser Rodados Apos Toda A pagina serem Carregadas//
 
-window.onload = function() {
-
-    function block() {
-
-        $("#cpf").val("");
-        $("#nome").val("");
-        $("#sexo").val("");
-        $("#nascimento").val("");
-        $("#turno").val("");
-        $("#serie").val("");
-        $.blockUI({
-            message: "Aguarde...",
-            css: {
-                border: "none",
-                padding: "15px",
-                backgroundColor: "#000",
-                "-webkit-border-radius": "10px",
-                "-moz-border-radius": "10px",
-                color: "#fff",
-                "font-size": "16px",
-                "font-weight": "bold"
-
-            }
-
-        });
-    }
-
-    var data = new Date();
-
-
-
-    console.log("datas sao iguais");
-
-
-    var count = 0;
-    var aguardando = window.setInterval(function() {
-
-
-        $("#aguardando").hide();
-
-
-        $.ajax({
-            url: "selecionarConfig.php",
-            type: "POST",
-            data: data,
-            success: function(data) {
-                console.log(data);
-                if (data == "true") {
-                    window.clearInterval(aguardando);
-                    $("#enquantocarrega").hide();
-                    $.unblockUI();
-                    $("#aguardando").fadeIn();
-                }
-            }
-        });
-
-        console.log(count);
-
-
-
-        console.log(data)
-
-        count++;
-    }, 1000);
-}
 
 function Teste() {
     alert("cheguei aqui");
@@ -152,7 +87,49 @@ function serieConsulta() {
 
 }
 
+function listar_config() {
 
+    $("#tabela_config_body").html("");
+    var action = "listar";
+
+    $.ajax({
+        url: "listarConfig.php",
+        type: "POST",
+        data: {
+            action,
+
+        },
+        beforeSend: function() {
+
+        },
+        success: function(data) {
+            console.log(data);
+            $("#tabela_config_body").html(data);
+        }
+    });
+}
+
+function listar_series() {
+
+    $("#tabela_serie_body").html("");
+    var action = "listar";
+
+    $.ajax({
+        url: "listarSerie.php",
+        type: "POST",
+        data: {
+            action,
+
+        },
+        beforeSend: function() {
+
+        },
+        success: function(data) {
+            console.log(data);
+            $("#tabela_serie_body").html(data);
+        }
+    });
+}
 
 
 function MascaraData(data) {

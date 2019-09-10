@@ -44,5 +44,12 @@ function statusArquivo($vagasSerie, $vagaAluno, $arquivo){
   else                                           return "";
 }
 
+function formatHora($value) {
+  $hora = preg_replace("/\D/", '', $value);
+ 
+    return preg_replace("/(\d{2})(\d{2})/", "\$1:\$2:", $hora);
+    
+}
+
 
 ?>

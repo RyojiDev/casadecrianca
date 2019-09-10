@@ -137,7 +137,6 @@ $(document).ready(function() {
 
 
 
-
     $("#nascimento").datepicker({
         format: 'dd/mm/yyyy',
         language: 'pt-BR',
@@ -154,14 +153,17 @@ $(document).ready(function() {
 
 
     var senha = $('#senha');
+    var senhaC = $('#senhaC');
     var olho = $("#olho");
 
     olho.mousedown(function() {
         senha.attr("type", "text");
+        senhaC.attr("type", "text");
     });
 
     olho.mouseup(function() {
         senha.attr("type", "password");
+        senhaC.attr("type", "password");
 
     });
 
@@ -178,5 +180,13 @@ $(document).ready(function() {
 
     });
 
+    function senhaConsulta() {
+        var senha = document.getElementById("senha").value;
+        var senhaC = document.getElementById("senhaC").value;
+        if (senha !== senhaC) {
+            alert("Confirme a senha");
+        }
+
+    }
 
 });

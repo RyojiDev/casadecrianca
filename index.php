@@ -65,7 +65,7 @@ if (isset($_POST) && !empty($_POST)){
 								size="number">
 						</div><!-- div cpf -->
 						<div class="container form-group">
-							<img class="olho_login bg-white" id="olho_login" src="img/olho.png" />
+							<img class="olho_login bg-white olho" id="olho_login" src="img/olho.png" />
 							Senha: <input class="form-control" type="password" class="senha" id="senha_login" name="senha"
 								required="required">
 							<a class="esqueci" href="#" data-toggle="modal" data-target="#recuperar_senha">Esqueceu a senha ?</a>
@@ -85,7 +85,7 @@ if (isset($_POST) && !empty($_POST)){
 			<!---------------------------- Modal Cadastro Usuario --------------------------------------------->
 
 
-		
+
 
 
 </div><!--- div Carregando -->
@@ -105,15 +105,14 @@ if (isset($_POST) && !empty($_POST)){
 						</div>
 						<label for="senha" class="control-label ">Senha</label>
 						<div class="form-inline">
-							<input required type="password" class="form-control valida " id="senha" class="senha"
-								name="senha" placeholder="Digite sua Senha"><img class="olho" id="olho"
-								src="img/olho.png" />
+							<input required type="password" class="form-control valida " id="senha"  class="senha"	name="senha"  placeholder="Digite sua Senha">
+							<input required type="password" class="form-control valida " id="senhaC" class="senhaC" name="senhaC" placeholder="Confirme sua Senha" ><img class="olho" id="olho" src="img/olho.png" />
 						</div>
 						<div class="form-group">
 							<label for="nome" class="control-label">Nome</label>
 							<div class="input-group">
 								<input required type="text" class="form-control" id="nome" name="nome"
-									placeholder="Digite o Nome do Responsável">
+									placeholder="Digite o Nome do Responsável" onkeyup="senhaConsulta()">
 							</div>
 						</div>
 						<div class="form-group">
@@ -140,11 +139,11 @@ if (isset($_POST) && !empty($_POST)){
 		</div>
 	</div>
 
-		
+
 
 									<!-------------- modal esqueci minha senha ------------------------------->
 
-								
+
 
 
 

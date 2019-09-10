@@ -1,3 +1,57 @@
+window.onload = function() {
+
+
+    $("#cpf").val("");
+    $("#nome").val("");
+    $("#sexo").val("");
+    $("#nascimento").val("");
+    $("#turno").val("");
+    $("#serie").val("");
+
+
+    var data = new Date();
+
+
+
+    console.log("datas sao iguais");
+
+
+    var count = 0;
+    var aguardando = window.setInterval(function() {
+
+
+        $("#aguardando").hide();
+
+
+        $.ajax({
+            url: "selecionarConfig.php",
+            type: "POST",
+            data: data,
+            success: function(data) {
+                console.log(data);
+                if (data == "true") {
+                    window.clearInterval(aguardando);
+                    $("#enquantocarrega").hide();
+                    $.unblockUI();
+                    $("#aguardando").fadeIn();
+                }
+            }
+        });
+
+        console.log(count);
+
+
+
+        console.log(data)
+
+        count++;
+    }, 1000);
+}
+
+
+
+
+
 $(document).ready(function() {
 
 
