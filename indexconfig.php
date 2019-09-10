@@ -221,13 +221,13 @@
 						</div><!---row-->	
 
 						<div class="row ">
-								<div class="form-group col-sm-4">
+								<div class="form-group col-sm-5">
 									<label for="dataIni" class="control-label">Faixa Inicial</label>
 							
   									<input required type="date" class="form-control data_Ini" id="data_Ini" name="data_Ini"
 											placeholder="00/00/000">
 								</div>
-									<div class="form-group col-sm-4">
+									<div class="form-group col-sm-5">
 											<label for="dataFim" class="control-label">Faixa Final</label>
 										<input required type="date" class="form-control data_Fim" id="data_Fim" name="data_Fim"
 											placeholder="00/00/000">
@@ -235,10 +235,10 @@
 											
 									
 																																
- 								<div class="form-group col-sm-4">
+ 								<div class="form-group col-sm-2">
 									<label for="vagas" class="control-label">Vagas</label>
 									<div class="input-group">
-										<input required type="number" placeholder="vagas" id="vagas" class="form-control" >
+										<input required type="text" placeholder="vagas" id="vagas" class="form-control" >
 									</div>
 								</div>
 						</div><!--- row 2--->

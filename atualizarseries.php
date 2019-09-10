@@ -5,14 +5,16 @@
     
     $ano = 2019;
     $action  = $_POST["action"];
-  $serie   = $_POST["id_s"];
-  $turno   = $_POST["id_t"];
+	
     // echo "<pre>";
 	// 	print_r($_POST);
 	// 	echo "</pre>";
 
 if($_POST["action"] == "buscarAnoSerieTurno")
 		{
+
+			$serie   = $_POST["id_s"];
+			$turno   = $_POST["id_t"];
             $conn = getConnection();
             
             
@@ -45,9 +47,23 @@ if($_POST["action"] == "buscarAnoSerieTurno")
 
 		if($_POST["action"] == "atualizar")
 		{
+
+			$ano                  = 2019;
+			$action               = $_POST["action"];
+			$serie                = $_POST["serie"];
+			$turno                = $_POST["turno"];
+			$serie_longa          = $_POST["serie_longa"];
+			$data_referencia_ini  = $_POST["data_ini"];
+			$data_referencia_fim  = $_POST["data_fim"];
+			$vagas                = $_POST["vagas"];
+			$matriculados         = $_POST["matriculados"];
+			$caminho_pdf          = $_POST["caminho_pdf"];
+			$observacao           = $_POST["observacao"];
+
 			$conn = getConnection();
 			$sql = "UPDATE casaserie (ano, serie, turno, serie_longa, data_referencia_ini, data_referencia_fim, vagas, matriculados, caminho_pdf, observacao)
 			VALUES (:ano, :serie, :turno, :serie_longa, :data_referencia_ini, :data_referencia_fim, :vagas, :matriculados, :caminho_pdf, :observacao)";
+			echo $sql;
 			$stmt = $conn->prepare($sql);
 			$stmt->bindParam(':ano', $ano);
 			$stmt->bindParam(':serie', $serie);

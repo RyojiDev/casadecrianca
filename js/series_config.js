@@ -121,4 +121,52 @@ $(document).ready(function() {
 
     });
 
+
+
+
+
+    $("#atualizar_series_confirm").click(function() {
+        var action = "atualizar"
+        var serie = $("#serie_number").val();
+        var turno = $("#turno").val();
+        var serie_longa = $("#serie_longa").val();
+        var data_ini = $("#data_Ini").val();
+        var data_fim = $("#data_Fim").val();
+        var vagas = $("#vagas").val();
+        var matriculados = $("#matriculados").val();
+        var caminho_pdf = $("#caminho_pdf").val();
+        var observacao = $("#observacao_serie").val();
+        id_s = serie_json.serie;
+        console.log(id_s);
+        console.log(id_t);
+        id_t = serie_json.turno;
+        $.ajax({
+            url: "atualizarseries.php",
+            type: "POST",
+            data: {
+
+                id_s,
+                id_t,
+                action,
+                serie,
+                turno,
+                serie_longa,
+                data_ini,
+                data_fim,
+                vagas,
+                matriculados,
+                caminho_pdf,
+                observacao
+            },
+            success: function() {
+
+            },
+            error: function() {
+
+            }
+
+        });
+
+    });
+
 });
