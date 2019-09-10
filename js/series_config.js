@@ -1,7 +1,23 @@
 $(document).ready(function() {
 
-
+    $("#atualizar_series_confirm").hide();
     // Metodo De Salvar Series
+
+    $("#chamar_modal_series").click(function() {
+
+        $("#atualizar_series_confirm").hide();
+        $("#salvar_series_confirm").show();
+        $("#serie_number").val("");
+        $("#turno").val("");
+        $("#serie_longa").val("");
+        $("#data_Ini").val("");
+        $("#data_Fim").val("");
+        $("#vagas").val("");
+        $("#matriculados").val("");
+        $("#caminho_pdf").val("");
+        $("#observacao_serie").val("");
+
+    });
 
     $("#salvar_series_confirm").submit(function(e) {
         e.preventDefault();
@@ -57,7 +73,7 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.atualizar_series', function() {
-        action = "atualizar";
+        action = "buscarAnoSerieTurno";
         let element = $(this);
         console.log(element);
         let id_serie = element.attr('id');
@@ -67,7 +83,7 @@ $(document).ready(function() {
         id_t = id_serie[1];
 
         $.ajax({
-            url: "salvarserie.php",
+            url: "atualizarseries.php",
             type: "POST",
             data: {
                 action,
@@ -76,6 +92,26 @@ $(document).ready(function() {
             },
             success: function(data) {
                 console.log(data);
+                dados = data;
+                serie_json = JSON.parse(data);
+                console.log(JSON.parse(dados));
+
+                $("#serie_number").val(serie_json.serie);
+                $("#turno").val(serie_json.turno);
+                $("#serie_longa").val(serie_json.serie_longa);
+                $("#data_Ini").val(serie_json.data_referencia_ini);
+                $("#data_Fim").val(serie_json.data_referencia_fim);
+                $("#vagas").val(serie_json.vagas);
+                $("#matriculados").val(serie_json.matriculados);
+                $("#caminho_pdf").val(serie_json.caminho_pdf);
+                $("#observacao_serie").val(serie_json.observacao);
+
+                $("#salvar_series_confirm").hide();
+                $("#atualizar_series_confirm").show();
+
+
+                $("#modal_series").modal("show");
+
             },
             error: function() {
 

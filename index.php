@@ -65,10 +65,10 @@ if (isset($_POST) && !empty($_POST)){
 								size="number">
 						</div><!-- div cpf -->
 						<div class="container form-group">
-							<img class="olho_login bg-white olho" id="olho_login" src="img/olho.png" />
+							<img class="olho_login bg-white " id="olho_login" src="img/olho.png" />
 							Senha: <input class="form-control" type="password" class="senha" id="senha_login" name="senha"
 								required="required">
-							<a class="esqueci" href="#" data-toggle="modal" data-target="#recuperar_senha">Esqueceu a senha ?</a>
+							<!-- <a class="esqueci" href="#" data-toggle="modal" data-target="#recuperar_senha">Esqueceu a senha ?</a> -->
 						</div>
 						<div class="container">
 							<button class="btn btn-success btn-block" type="submit" value="Próxima">Entrar</button>
@@ -106,13 +106,15 @@ if (isset($_POST) && !empty($_POST)){
 						<label for="senha" class="control-label ">Senha</label>
 						<div class="form-inline">
 							<input required type="password" class="form-control valida " id="senha"  class="senha"	name="senha"  placeholder="Digite sua Senha">
-							<input required type="password" class="form-control valida " id="senhaC" class="senhaC" name="senhaC" placeholder="Confirme sua Senha" ><img class="olho" id="olho" src="img/olho.png" />
+							<input required type="password" class="form-control valida col-sm-5" id="senhaC" class="senhaC" name="senhaC" placeholder="Confirme sua Senha" ><img class="olho" id="olho" src="img/olho.png" />
+							<span class="error" id="errortxt" style="color:#FF0000; font-size:10px; margin-left: 300px"></span>
+
 						</div>
 						<div class="form-group">
 							<label for="nome" class="control-label">Nome</label>
 							<div class="input-group">
 								<input required type="text" class="form-control" id="nome" name="nome"
-									placeholder="Digite o Nome do Responsável" onkeyup="senhaConsulta()">
+									placeholder="Digite o Nome do Responsável">
 							</div>
 						</div>
 						<div class="form-group">

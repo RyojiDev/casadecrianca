@@ -56,10 +56,11 @@ button:disabled {
     display: none;
 }
 
-#olho {
+
+/* #olho {
     left: 10px;
     position: relative;
-}
+} */
 
 .esqueci {
     color: #ffff;
@@ -71,3 +72,13 @@ button:disabled {
 .olho_login {
     float: right;
 }
+
+.olho {
+    margin-left: 5px;
+}
+
+#senhaC {
+    margin-left: 50px;
+}
+
+#export-txt {}

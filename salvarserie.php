@@ -71,7 +71,7 @@
 		if($_POST["action"] == "buscarAnoSerieTurno")
 		{
 			$conn = getConnection();
-			$query = "SELECT * FROM casaserie WHERE ano = '.$ano. ' and serie = '.$serie.' and turno = '.$turno";
+			$query = "SELECT * FROM casaserie WHERE ano = ".$ano." and serie = ".$serie." and turno = '".$turno."';";
 			$stmt = $conn->prepare($query);
 			if($stmt->execute()){
 				$result = $stmt->fetchAll();

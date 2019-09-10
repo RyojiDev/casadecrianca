@@ -34,4 +34,10 @@ $("#salvar_config_confirm").click(function() {
 
     });
 
+
+
+});
+
+$("#exportar").click(function() {
+    window.location.href = "exportar.php";
 });

@@ -84,6 +84,8 @@ $(document).ready(function() {
     $("#criar_responsavel").click(function() {
         $("#cpf").val("");
         $("#senha").val("");
+        $("#senhaC").val("");
+        $("#errortxt").text("");
         $("#nome").val("");
         $("#telefone").val("");
         $("#email").val("");
@@ -96,15 +98,24 @@ $(document).ready(function() {
 
     $("#salvar_confirm").click(function(e) {
 
-        if (validarForm_Responsavel() == true) {
+
+
+
+
+
+        if (validarForm_Responsavel() == true && $("#senha").val() == $("#senhaC").val()) {
+
+            console.log(senha.value)
+            console.log(senhaC.value)
+
 
             $.ajax({
                 url: "cadastro.php",
                 type: 'POST',
                 data: $("#form_cadastro").serialize(),
                 success: function(data) {
-                    console.log(data.length);
-                    $("#receber_dados").html(data);
+                    console.log(data);
+                    // $("#receber_dados").html(data);
                     $.growl.notice({ title: "Cadastro", message: "Realizado com sucesso!" });
                     $("#modal_cadastro").modal("hide");
 
@@ -180,13 +191,32 @@ $(document).ready(function() {
 
     });
 
-    function senhaConsulta() {
-        var senha = document.getElementById("senha").value;
-        var senhaC = document.getElementById("senhaC").value;
-        if (senha !== senhaC) {
-            alert("Confirme a senha");
+    $("#senhaC").blur(function() {
+
+        senhaConsulta();
+
+        function senhaConsulta() {
+            var senha = document.getElementById("senha").value;
+            var senhaC = document.getElementById("senhaC").value;
+
+            if (senha !== senhaC) {
+                $("#errortxt").text("Senha não confere");
+                $("#senha").focus();
+                $("#senha").change(function() {
+                    if ($("#senha").val() == senhaC) {
+                        $("#errortxt").text("");
+                    }
+                });
+            } else if (senha == senhaC) {
+                $("#errortxt").text("");
+
+
+
+            }
+
         }
 
-    }
+
+    });
 
 });

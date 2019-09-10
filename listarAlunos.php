@@ -13,12 +13,16 @@
 	include './functions.php';
 
 	$ano     = 2019;
-	$action = "listar";
-	$serie  =  1;
- 	$turno  = "M";
-  //$action  = $_POST["action"];
-  //$serie   = $_POST["serie"];
-  //$turno   = $_POST["turno"];
+	// $action = "listar";
+	// $serie  =  1;
+ 	// $turno  = "M";
+  $action  = $_POST["action"];
+  $serie   = $_POST["id_s"];
+  $turno   = $_POST["id_t"];
+
+  echo "<pre>";
+  print_r($_POST);
+  echo "</pre>";
 	if ($action == "listar")
 	{
 		$conn = getConnection();

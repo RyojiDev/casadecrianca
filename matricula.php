@@ -164,9 +164,9 @@
              <input type="hidden" value="<?php echo formatCnpjCpf($cpf) ?>" id="cpf_responsavel">
 
              <div class="row">
-                 <div class="form-group col-sm-4 col-lg-2">
+                 <div class="form-group col-sm-4 col-md-4 col-lg-2 ">
                      <label for="cpf">CPF</label>
-                     <input type="text" class="form-control mr-2 cpf" name="cpf" id="cpf" required="required" maxlength="11" size="8" placeholder="Aluno(a)" onkeyup="cpfConsulta()" >
+                     <input type="text" class="form-control mr-2 cpf text-center" name="cpf" id="cpf" required="required" maxlength="11" size="8" placeholder="Aluno(a)" onkeyup="cpfConsulta()" >
                  </div>
                  <!-- div cpf -->
 

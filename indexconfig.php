@@ -20,6 +20,8 @@
 			</div>
 		</header>
 
+
+		<p><button class="btn btn-warning btn-sm" id="export-txt" data-toggle="modal" data-target="#confirm-export" style="margin-left: 5px;"><i class="fas fa-file-export"></i>Exportar TXT</button></p>
 <div class="container my-5 ">
 		<div class="row">
   <div class="col-sm-6 ">
@@ -32,7 +34,11 @@
   <div class="col-sm-6">
     <div class="card config w-70 h-100 bg-primary text-white">
       <div class="card-body">
-        <p class="text-center"><button class="btn btn-success " data-toggle="modal" data-target="#modal_series">Cadastro de Série</button></p>
+		  <div class="btn-group">
+		<p class="text-center"><button class="btn btn-success " id="chamar_modal_series" data-toggle="modal" data-target="#modal_series">Cadastro de Série</button></p>
+		
+		
+		</div>
       </div>
     </div>
   </div>
@@ -201,10 +207,10 @@
 							</div>	
 							
 								<div class="form-group col-sm-4">
-									<label for="serielonga" class="control-label">Serie Longa</label>
+									<label for="serielonga" class="control-label">Descrição</label>
 									<div class="input-group">
 										<input required type="text" class="form-control" id="serie_longa" name="serie_longa"
-											placeholder="Informe o nome da serie">
+											placeholder="Informe a descrição da serie">
 									</div>
 								</div>
 						
@@ -216,13 +222,13 @@
 
 						<div class="row ">
 								<div class="form-group col-sm-4">
-									<label for="dataIni" class="control-label">Data Inicial</label>
+									<label for="dataIni" class="control-label">Faixa Inicial</label>
 							
   									<input required type="date" class="form-control data_Ini" id="data_Ini" name="data_Ini"
 											placeholder="00/00/000">
 								</div>
 									<div class="form-group col-sm-4">
-											<label for="dataFim" class="control-label">Data Final</label>
+											<label for="dataFim" class="control-label">Faixa Final</label>
 										<input required type="date" class="form-control data_Fim" id="data_Fim" name="data_Fim"
 											placeholder="00/00/000">
 									</div>
@@ -244,7 +250,7 @@
 									</div>
 
 									<div class="form-group col-sm-8">
-									<label for="caminho_pdf" class="control-label">caminho</label>
+									<label for="caminho_pdf" class="control-label text-center">Anexo</label>
 									<input type="text" class="form-control" name="caminho_pdf" id="caminho_pdf">
 									
 									
@@ -260,6 +266,7 @@
 								<div class="form-group">
 									</label>
 									<div class="modal-footer">
+										<button id="atualizar_series_confirm" type="submit" class="btn btn-primary">Atualizar</button>
 										<button id="salvar_series_confirm" type="submit" class="btn btn-success">Salvar</button>
 										<button type="cancel" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 									</div>
@@ -269,6 +276,28 @@
 				</div>		
 			</div>
 			</div>				
+
+
+			<!------ confirmar Exportação de TXT ------>
+
+			<div class="modal fade" id="confirm-export" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Exportar Para TXT</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Tem certeza que deseja Exportar os Dados ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" id="exportar" class="btn btn-success"><i class="fas fa-file-export"></i>Exportar</button>
+      </div>
+    </div>
+  </div>
 
 	<?php include("import.phtml"); ?>
 
