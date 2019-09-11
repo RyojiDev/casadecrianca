@@ -18,7 +18,7 @@
             <div class=container>
                 <li class="nav-item mr-auto texto-menu">
                         <div class="row">
-                        <h2 class="text-center text-justify texto-titulo col-12"><?php echo utf8_encode($cabecalho);?></h2>
+                        <h2 class="text-center text-justify texto-titulo col-12"><?php echo $cabecalho;?></h2>
 
 
  <div class="container">

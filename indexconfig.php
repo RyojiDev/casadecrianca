@@ -21,28 +21,23 @@
 		</header>
 
 
-		<p><button class="btn btn-warning btn-sm" id="export-txt" data-toggle="modal" data-target="#confirm-export" style="margin-left: 5px;"><i class="fas fa-file-export"></i>Exportar TXT</button></p>
-<div class="container my-5 ">
-		<div class="row">
-  <div class="col-sm-6 ">
-    <div class="card config w-70 h-100 bg-light text-black">
-      <div class="card-body">
-        <p class="text-center"><button class="btn btn-success  " data-toggle="modal" data-target="#modal_config">Definições</button></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card config w-70 h-100 bg-primary text-white">
-      <div class="card-body">
-		  <div class="btn-group">
-		<p class="text-center"><button class="btn btn-success " id="chamar_modal_series" data-toggle="modal" data-target="#modal_series">Cadastro de Série</button></p>
 		
-		
+<div class="container my-5">
+	<div class="row">
+		<div class="col-sm-6" style="margin: 0 auto;">
+			<div class="card config w-70 h-100 bg-light text-black">
+			<div class="card-body">
+				<div class="container" style="margin: 0 auto; width: 80%;">
+					<div class="btn-group">
+					<span><p class="text-center"><button class="btn btn-success btn-sm btn-config" id="chamar_modal_config" data-toggle="modal" data-target="#modal_config">Definições</button></p></span>
+					<span><p class="text-center"><button class="btn btn-success btn-sm btn-config " id="chamar_modal_series" data-toggle="modal" data-target="#modal_series">Cadastro de Série</button></p></span>
+					<span><p><button class="btn btn-warning btn-sm btn-config" id="export-txt" data-toggle="modal" data-target="#confirm-export"><i class="fas fa-file-export"></i>Exportar TXT</button></p></span>
+					</div>
+				</div>	
+			</div>
+			</div>
 		</div>
-      </div>
-    </div>
-  </div>
-</div>
+		</div>
 </div>
 
 
@@ -114,6 +109,7 @@
 							<h5>Definições</h5>
 						</div>
 						<div class="modal-body">
+						<input type="hidden" id="ano"  value="">
 							<input type="hidden" action="inserir" name="action" value="inserir">
 						<div class="row">			
 									<div class="form-group col-sm-6">
@@ -167,7 +163,7 @@
 							<div class="form-group">
 								</label>
 								<div class="modal-footer">
-								
+								<button id="atualizar_config_confirm" type="submit" class="btn btn-primary">Atualizar</button>
 									<button id="salvar_config_confirm" type="submit" class="btn btn-success">Salvar</button>
 									<button type="cancel" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 								</div>
@@ -201,12 +197,12 @@
 							</div>	
 							-->
 						<div class="row">
-							<div class="form-group col-sm-3">
-							<label for="serie_number" class="control-label">Serie</label>
-								<input type="number" name="serie_number" class="form-control" id="serie_number" placeholder="Informe á serie" >
+							<div class="form-group col-sm-2">
+							<label for="serie_number" class="control-label">Série</label>
+								<input type="text" name="serie_number" class="form-control text-center" id="serie_number" placeholder="Informe á serie" >
 							</div>	
 							
-								<div class="form-group col-sm-4">
+								<div class="form-group col-sm-6">
 									<label for="serielonga" class="control-label">Descrição</label>
 									<div class="input-group">
 										<input required type="text" class="form-control" id="serie_longa" name="serie_longa"
@@ -214,10 +210,15 @@
 									</div>
 								</div>
 						
-								<div class="form-group col-sm-5">
+								<div class="form-group col-sm-3">
 							<label for="turno" class="control-label">Turno</label>
-								<input type="text" name="turno" class="form-control" id="turno" placeholder="Informe o Turno" >
-							</div>	
+								
+								<select class="form-control" name="turno" id="turno" >
+									<option value=""></option>
+									<option value="M">Manhã</option>
+									<option value="T">Tarde</option>
+                     </select>
+								</div>	
 						</div><!---row-->	
 
 						<div class="row ">
@@ -238,18 +239,18 @@
  								<div class="form-group col-sm-2">
 									<label for="vagas" class="control-label">Vagas</label>
 									<div class="input-group">
-										<input required type="text" placeholder="vagas" id="vagas" class="form-control" >
+										<input required type="text" placeholder="vagas" id="vagas" class="form-control text-center" >
 									</div>
 								</div>
 						</div><!--- row 2--->
 
 						<div class="row">				
-									<div class="form-group col-sm-4">
+									<div class="form-group col-sm-3">
 										<label for="matriculados" class="control-label">Matriculados</label>							
-										<input type="number" name="matriculados" class="form-control" id="matriculados" placeholder="quantidade de matriculados" >
+										<input type="text" name="matriculados" class="form-control text-center" id="matriculados" placeholder="quantidade de matriculados" >
 									</div>
 
-									<div class="form-group col-sm-8">
+									<div class="form-group col-sm-9">
 									<label for="caminho_pdf" class="control-label text-center">Anexo</label>
 									<input type="text" class="form-control" name="caminho_pdf" id="caminho_pdf">
 									
@@ -304,6 +305,6 @@
 	
 
 	</body>
-	<script> listar_config(); listar_series(); </script>
+	
 
 </html>

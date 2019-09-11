@@ -1,7 +1,9 @@
 $(document).ready(function() {
-
+    // Assim que carregar a pagina, esconde botão atualizar do modal
     $("#atualizar_series_confirm").hide();
     // Metodo De Salvar Series
+
+    listar_series();
 
     $("#chamar_modal_series").click(function() {
 
@@ -72,6 +74,33 @@ $(document).ready(function() {
 
     });
 
+    // Metodo Para Listar as series
+
+
+    function listar_series() {
+
+        $("#tabela_serie_body").html("");
+        var action = "listar";
+
+        $.ajax({
+            url: "listarSerie.php",
+            type: "POST",
+            data: {
+                action,
+
+            },
+            beforeSend: function() {
+
+            },
+            success: function(data) {
+                console.log(data);
+                $("#tabela_serie_body").html(data);
+            }
+        });
+    }
+
+    // Metodo De mostrar as series para Atualizar , aqui captura o id no clique do botão
+
     $(document).on('click', '.atualizar_series', function() {
         action = "buscarAnoSerieTurno";
         let element = $(this);
@@ -93,25 +122,31 @@ $(document).ready(function() {
             success: function(data) {
                 console.log(data);
                 dados = data;
-                serie_json = JSON.parse(data);
-                console.log(JSON.parse(dados));
-
-                $("#serie_number").val(serie_json.serie);
-                $("#turno").val(serie_json.turno);
-                $("#serie_longa").val(serie_json.serie_longa);
-                $("#data_Ini").val(serie_json.data_referencia_ini);
-                $("#data_Fim").val(serie_json.data_referencia_fim);
-                $("#vagas").val(serie_json.vagas);
-                $("#matriculados").val(serie_json.matriculados);
-                $("#caminho_pdf").val(serie_json.caminho_pdf);
-                $("#observacao_serie").val(serie_json.observacao);
-
-                $("#salvar_series_confirm").hide();
-                $("#atualizar_series_confirm").show();
+                if (data == "" || data == undefined || data == false) {
+                    $.growl.warning({ title: "Erro", message: "Ao Buscar os dados, por favor verifique e tente novamente" });
+                } else {
 
 
-                $("#modal_series").modal("show");
+                    serie_json = JSON.parse(data);
+                    console.log(JSON.parse(dados));
 
+                    $("#serie_number").val(serie_json.serie);
+                    $("#turno").val(serie_json.turno);
+                    $("#serie_longa").val(serie_json.serie_longa);
+                    $("#data_Ini").val(serie_json.data_referencia_ini);
+                    $("#data_Fim").val(serie_json.data_referencia_fim);
+                    $("#vagas").val(serie_json.vagas);
+                    $("#matriculados").val(serie_json.matriculados);
+                    $("#caminho_pdf").val(serie_json.caminho_pdf);
+                    $("#observacao_serie").val(serie_json.observacao);
+
+                    $("#salvar_series_confirm").hide();
+                    $("#atualizar_series_confirm").show();
+
+
+                    $("#modal_series").modal("show");
+
+                }
             },
             error: function() {
 
@@ -123,7 +158,7 @@ $(document).ready(function() {
 
 
 
-
+    // Metodo De Atualizar a serie, após carregado , ao clicar no botão atualizar, faz update das series no banco
 
     $("#atualizar_series_confirm").click(function() {
         var action = "atualizar"
@@ -158,7 +193,17 @@ $(document).ready(function() {
                 caminho_pdf,
                 observacao
             },
-            success: function() {
+            success: function(data) {
+                console.log(data);
+                if (data == "" || data == undefined || data == false) {
+                    $.growl.warning({ title: "Erro", message: "Ao atualizar a Série" });
+                } else {
+                    $.growl.notice({ title: "Sucesso", message: "Série atualizada com Sucesso!" });
+                    $("#modal_series").modal("hide");
+
+
+                    listar_series();
+                }
 
             },
             error: function() {

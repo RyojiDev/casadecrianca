@@ -22,10 +22,10 @@
 				$tabela = "<tr id=".$campo["serie"].$campo["turno"].">".
 			//"<td>" . ($campo["ano"]) . "</td>".
 			"<td>" . ($campo["serie"]) . "</td>".
-			"<td>" . utf8_encode($campo["serie_longa"]) . "</td>".
-			"<td>" . turno(utf8_encode($campo["turno"])) . "</td>".
-			"<td>" . formataData(utf8_encode($campo["data_referencia_ini"])) . "</td>".
-			"<td>" . formataData(utf8_encode($campo["data_referencia_fim"])) . "</td>".
+			"<td>" . $campo["serie_longa"] . "</td>".
+			"<td>" . turno($campo["turno"]) . "</td>".
+			"<td>" . formataData($campo["data_referencia_ini"]) . "</td>".
+			"<td>" . formataData($campo["data_referencia_fim"]) . "</td>".
 			"<td>" . $campo["vagas"] . "</td>".
 			"<td>" . $campo["matriculados"] . "</td>".
 			"<td>" . ($campo["caminho_pdf"]) . "</td>".

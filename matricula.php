@@ -144,7 +144,7 @@
   <div class="card-body">
 
     <p class="card-text"><h1><?php
-     echo utf8_encode($cabecalho = $casamatriculaconfig[0]['descricao']);?></p>
+     echo $cabecalho = $casamatriculaconfig[0]['descricao'];?></p>
 
   </div>
   <div class="card-footer text-muted">

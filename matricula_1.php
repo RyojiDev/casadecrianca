@@ -288,12 +288,12 @@
             $return = "$tabela";
               foreach ($casamatricula as $campo)
             {
-                $return.= "<td>" . formatCnpjCpf(utf8_encode($campo["cpf"])) . "</td>";
-                $return.= "<td>" . utf8_encode($campo["nome"]) . "</td>";
-                $return.= "<td>" . utf8_encode($campo["sexo"]) . "</td>";
-                $return.= "<td>" . utf8_encode($campo["nascimento"]) . "</td>";
-                $return.= "<td>" . utf8_encode($campo["serie"]) . "</td>";
-                $return.= "<td>" . utf8_encode($campo["vaga"]) . "</td>";
+                $return.= "<td>" . formatCnpjCpf($campo["cpf"]) . "</td>";
+                $return.= "<td>" . $campo["nome"] . "</td>";
+                $return.= "<td>" . $campo["sexo"] . "</td>";
+                $return.= "<td>" . $campo["nascimento"] . "</td>";
+                $return.= "<td>" . $campo["serie"] . "</td>";
+                $return.= "<td>" . $campo["vaga"] . "</td>";
                 $return.= "</tr>";
             }
 

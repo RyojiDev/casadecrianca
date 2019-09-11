@@ -87,49 +87,9 @@ function serieConsulta() {
 
 }
 
-function listar_config() {
 
-    $("#tabela_config_body").html("");
-    var action = "listar";
 
-    $.ajax({
-        url: "listarConfig.php",
-        type: "POST",
-        data: {
-            action,
 
-        },
-        beforeSend: function() {
-
-        },
-        success: function(data) {
-            console.log(data);
-            $("#tabela_config_body").html(data);
-        }
-    });
-}
-
-function listar_series() {
-
-    $("#tabela_serie_body").html("");
-    var action = "listar";
-
-    $.ajax({
-        url: "listarSerie.php",
-        type: "POST",
-        data: {
-            action,
-
-        },
-        beforeSend: function() {
-
-        },
-        success: function(data) {
-            console.log(data);
-            $("#tabela_serie_body").html(data);
-        }
-    });
-}
 
 
 function MascaraData(data) {

@@ -2,10 +2,10 @@
 
   include './connection.php';
     include './functions.php';
-    
+
     $ano = 2019;
     $action  = $_POST["action"];
-	
+
     // echo "<pre>";
 	// 	print_r($_POST);
 	// 	echo "</pre>";
@@ -15,16 +15,15 @@ if($_POST["action"] == "buscarAnoSerieTurno")
 
 			$serie   = $_POST["id_s"];
 			$turno   = $_POST["id_t"];
-            $conn = getConnection();
-            
-            
-            $query = "SELECT * FROM casaserie WHERE ano = ".$ano." and serie = ".$serie." and turno = '".$turno."';";
-            //echo $query;
+      $conn = getConnection();
+      $query = "SELECT * FROM casaserie WHERE ano = ".$ano." and serie = ".$serie." and turno = '".$turno."';";
+      //echo $query;
 			$stmt = $conn->prepare($query);
 			if($stmt->execute()){
 				$result = $stmt->fetchAll();
 				foreach($result as $row)
 				{
+				//	echo "<br>".$row['ano']."-".$row['serie']."-".$row['turno']."-".$row['serie_longa']."-".$row['data_referencia_ini']."-".$row['data_referencia_fim']."-".$row['vagas']."-".$row['matriculados']."-".$row['caminho_pdf']."-".$row['observacao']."<br>";
 					$output['ano']                 = $row['ano'];
 					$output['serie']               = $row['serie'];
 					$output['turno']               = $row['turno'];
@@ -35,7 +34,6 @@ if($_POST["action"] == "buscarAnoSerieTurno")
 					$output['matriculados']        = $row['matriculados'];
 					$output['caminho_pdf']         = $row['caminho_pdf'];
 					$output['observacao']          = $row['observacao'];
-
 				}
 				echo json_encode($output);
 			} else {
@@ -62,7 +60,7 @@ if($_POST["action"] == "buscarAnoSerieTurno")
 
 			$conn = getConnection();
 			$sql = "UPDATE casaserie SET ano= :ano, serie= :serie, turno= :turno, serie_longa= :serie_longa, data_referencia_ini= :data_referencia_ini, data_referencia_fim= :data_referencia_fim, vagas= :vagas, matriculados= :matriculados, caminho_pdf= :caminho_pdf, observacao= :observacao WHERE ano = ".$ano." and serie = ".$serie. " and turno = '".$turno."';";
-			
+
 			$stmt = $conn->prepare($sql);
 			$stmt->bindParam(':ano', $ano);
 			$stmt->bindParam(':serie', $serie);
@@ -96,5 +94,5 @@ if($_POST["action"] == "buscarAnoSerieTurno")
 			}
 			$conn = null;
         }
-        
+
         ?>

@@ -29,7 +29,7 @@
 
       foreach ($casaserie as $campo)
         {
-            echo $campo['serie'].'-'.utf8_encode($campo['serie_longa']);
+            echo $campo['serie'].'-'.$campo['serie_longa'];
 
 
 

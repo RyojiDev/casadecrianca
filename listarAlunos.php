@@ -34,12 +34,12 @@
 		foreach ($casamatricula as $campo)
 
 		{ $tabela = "<tr>".
-			"<td>" . formatCnpjCpf(utf8_encode($campo["cpf"])) . "</td>".
-			"<td>" . utf8_encode($campo["nome"]) . "</td>".
-			"<td>" . utf8_encode($campo["sexo"]) . "</td>".
-			"<td>" . formataData(utf8_encode($campo["nascimento"])) . "</td>".
-			"<td>" . turno(utf8_encode($campo["turno"])) . "</td>".
-			"<td>" . utf8_encode($campo["vaga"]). "</td></tr>";
+			"<td>" . formatCnpjCpf($campo["cpf"]) . "</td>".
+			"<td>" . $campo["nome"] . "</td>".
+			"<td>" . $campo["sexo"] . "</td>".
+			"<td>" . formataData($campo["nascimento"]) . "</td>".
+			"<td>" . turno($campo["turno"]) . "</td>".
+			"<td>" . $campo["vaga"]. "</td></tr>";
 			echo $tabela;
 
 	}
@@ -56,14 +56,14 @@
 			foreach ($casamatricula as $campo)
 
 			{ $tabela = "<tr> id=".$campo["serie"].$campo["turno"]." ".
-				"<td>" . formatCnpjCpf(utf8_encode($campo["cpf"])) . "</td>".
-				"<td>" . utf8_encode($campo["nome"]) . "</td>".
-				"<td>" . utf8_encode($campo["sexo"]) . "</td>".
-				"<td>" . formataData(utf8_encode($campo["nascimento"])) . "</td>".
-				"<td>" . turno(utf8_encode($campo["turno"])) . "</td>".
-				"<td>" . utf8_encode($campo["vaga"]). "</td>".
-				"<td>" . utf8_encode($campo["r_nome"]). "</td>".
-				"<td>" . utf8_encode($campo["telefone"]). "</td></tr>";
+				"<td>" . formatCnpjCpf($campo["cpf"]) . "</td>".
+				"<td>" . $campo["nome"] . "</td>".
+				"<td>" . $campo["sexo"] . "</td>".
+				"<td>" . formataData($campo["nascimento"]) . "</td>".
+				"<td>" . turno($campo["turno"]) . "</td>".
+				"<td>" . $campo["vaga"]. "</td>".
+				"<td>" . $campo["r_nome"]. "</td>".
+				"<td>" . $campo["telefone"]. "</td></tr>";
 
 				echo $tabela;
 

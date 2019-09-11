@@ -36,7 +36,7 @@ if (isset($_POST) && !empty($_POST)){
 <div id="carregando">
 		<header>
 			<div class="container block">
-				<h2 class="text-center text-color-white"><?php echo utf8_encode($cabecalho);?></h2>
+				<h2 class="text-center text-color-white"><?php echo $cabecalho;?></h2>
 			</div>
 		</header>
 

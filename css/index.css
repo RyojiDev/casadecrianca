@@ -82,3 +82,11 @@ button:disabled {
 }
 
 #export-txt {}
+
+#card-btn {
+    margin: 0 auto;
+}
+
+.btn-config {
+    margin-left: 10px;
+}

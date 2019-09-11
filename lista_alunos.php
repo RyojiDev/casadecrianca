@@ -17,13 +17,13 @@
     $casamatricula = $result->fetchAll();
     foreach ($casamatricula as $campo)
 { $tabela = "<tr>".
- "<td>" . formatCnpjCpf(utf8_encode($campo["cpf"])) . "</td>".
- "<td>" . utf8_encode($campo["nome"]) . "</td>".
- "<td>" . utf8_encode($campo["sexo"]) . "</td>".
- "<td>" . formataData(utf8_encode($campo["nascimento"])) . "</td>".
- "<td>" . turno(utf8_encode($campo["turno"])) . "</td>".
- //"<td>" . utf8_encode($campo["serie"]) ."-".utf8_encode($campo["serie_longa"]). "</td>".
- "<td>" . utf8_encode($campo["serie_longa"]). "</td>".
+ "<td>" . formatCnpjCpf($campo["cpf"]) . "</td>".
+ "<td>" . $campo["nome"] . "</td>".
+ "<td>" . $campo["sexo"] . "</td>".
+ "<td>" . formataData($campo["nascimento"]) . "</td>".
+ "<td>" . turno($campo["turno"]) . "</td>".
+ //"<td>" . $campo["serie"] ."-".$campo["serie_longa"]. "</td>".
+ "<td>" . $campo["serie_longa"]. "</td>".
  "<td>" . status($campo["vagas"],$campo["vaga"])."</td>".
  "<td>" . statusArquivo($campo["vagas"],$campo["vaga"],$campo["caminho_pdf"])."</td>. </tr>";
 
