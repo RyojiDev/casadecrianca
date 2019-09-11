@@ -61,9 +61,8 @@ if($_POST["action"] == "buscarAnoSerieTurno")
 			$observacao           = $_POST["observacao"];
 
 			$conn = getConnection();
-			$sql = "UPDATE casaserie (ano, serie, turno, serie_longa, data_referencia_ini, data_referencia_fim, vagas, matriculados, caminho_pdf, observacao)
-			VALUES (:ano, :serie, :turno, :serie_longa, :data_referencia_ini, :data_referencia_fim, :vagas, :matriculados, :caminho_pdf, :observacao)";
-			echo $sql;
+			$sql = "UPDATE casaserie SET ano= :ano, serie= :serie, turno= :turno, serie_longa= :serie_longa, data_referencia_ini= :data_referencia_ini, data_referencia_fim= :data_referencia_fim, vagas= :vagas, matriculados= :matriculados, caminho_pdf= :caminho_pdf, observacao= :observacao WHERE ano = ".$ano." and serie = ".$serie. " and turno = '".$turno."';";
+			
 			$stmt = $conn->prepare($sql);
 			$stmt->bindParam(':ano', $ano);
 			$stmt->bindParam(':serie', $serie);
@@ -75,7 +74,8 @@ if($_POST["action"] == "buscarAnoSerieTurno")
 			$stmt->bindParam(':matriculados', $matriculados);
 			$stmt->bindParam(':caminho_pdf', $caminho_pdf);
 			$stmt->bindParam(':observacao', $observacao);
-
+			echo "<br>";
+//print_r($stmt);
 			if($stmt->execute()){
 					echo "Atualizado com Sucesso!";
 					unset($ano);
