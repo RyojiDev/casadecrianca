@@ -62,6 +62,10 @@ $(document).ready(function() {
         window.location.href = "exportar.php";
     });
 
+    $("#buscar_alunos").click(function() {
+        window.location.href = "lista_alunos_config.php";
+    });
+
     // metodo para Listar Dados Dos Config
 
 

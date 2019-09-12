@@ -26,38 +26,40 @@
 	<div class="row">
 		<div class="col-sm-6" style="margin: 0 auto;">
 			<div class="card config w-70 h-100 bg-light text-black">
-			<div class="card-body">
-				<div class="container" style="margin: 0 auto; width: 80%;">
-					<div class="btn-group">
-					<span><p class="text-center"><button class="btn btn-success btn-sm btn-config" id="chamar_modal_config" data-toggle="modal" data-target="#modal_config">Definições</button></p></span>
-					<span><p class="text-center"><button class="btn btn-success btn-sm btn-config " id="chamar_modal_series" data-toggle="modal" data-target="#modal_series">Cadastro de Série</button></p></span>
-					<span><p><button class="btn btn-warning btn-sm btn-config" id="export-txt" data-toggle="modal" data-target="#confirm-export"><i class="fas fa-file-export"></i>Exportar TXT</button></p></span>
-					</div>
-				</div>	
-			</div>
+                <div class="card-body">
+                    <div class="container" style="margin: 0 auto; width: 80%;">
+                        <div class="btn-group">
+                        <span><p class="text-center"><button class="btn btn-success btn-sm btn-config" id="chamar_modal_config" data-toggle="modal" data-target="#modal_config">Definições</button></p></span>
+                        <span><p class="text-center"><button class="btn btn-success btn-sm btn-config " id="chamar_modal_series" data-toggle="modal" data-target="#modal_series">Cadastro de Série</button></p></span>
+                        <span><p class="text-center"><button class="btn btn-success btn-sm btn-config " id="buscar_alunos" >Buscar Alunos</button></p></span>
+                        <span><p><button class="btn btn-warning btn-sm btn-config" id="export-txt" data-toggle="modal" data-target="#confirm-export"><i class="fas fa-file-export"></i>Exportar TXT</button></p></span>
+                        </div>
+                    </div>	
+                </div>
 			</div>
 		</div>
-		</div>
+	</div>
 </div>
 
 
 
 <div class="container">
 <table class=' table table-striped table thead-light' id='tabela_config'>
-      <thead class='thead-light'>
-          <tr class="text-left">
-              <!-- <th>Ano</th> -->
-              <th>Data Inicial</th>
-              <th>Hora Inicial</th>
-              <th>Data Final</th>
-              <th>Hora Final</th>
-              <th>Cabeçalho</th>
-              <th>Descrição</th>
-              <th>Informação</th>
-          </tr>
-      </thead>
-      <tbody id="tabela_config_body">
-      <tr>
+    <thead class='thead-light'>
+        <tr class="text-left">
+            <!-- <th>Ano</th> -->
+            <th>Data Inicial</th>
+            <th>Hora Inicial</th>
+            <th>Data Final</th>
+            <th>Hora Final</th>
+            <th>Cabeçalho</th>
+            <th>Descrição</th>
+            <th>Informação</th>
+        </tr>
+    </thead>
+    <tbody id="tabela_config_body">
+        <tr>
+</table>
 
 
 
@@ -66,30 +68,28 @@
 
     <div class="container">
 
-      <table class=' table table-striped table thead-light' id='tabela_serie'>
-      <thead class='thead-light'>
-          <tr class="text-left">
-             <!-- <th>Ano</th> -->
-              <th>Série</th>
-              <th>Descrição</th>
-			  <th>Turno</th>
-              <th>Faixa Inicial</th>
-              <th>Faixa Final</th>
-              <th>Vagas</th>
-              <th>Matriculados</th>
-              <th>Anexo</th>
-              <th>Observação</th>
-          </tr>
-      </thead>
-     < <tbody id="tabela_serie_body">
-
-  
-      <tr>
-
-	 
-
-
-</div>
+        <table class=' table table-striped table thead-light' id='tabela_serie'>
+            <thead class='thead-light'>
+                <tr class="text-left">
+                    <!-- <th>Ano</th> -->
+                    <th>Série</th>
+                    <th>Descrição</th>
+                    <th>Turno</th>
+                    <th>Faixa Inicial</th>
+                    <th>Faixa Final</th>
+                    <th>Vagas</th>
+                    <th>Matriculados</th>
+                    <th>Anexo</th>
+                    <th>Observação</th>
+                </tr>
+            </thead>
+            <tbody id="tabela_serie_body">
+                <tr>
+        </table>
+    </div>
+    
+    
+   
 
 
 
@@ -101,72 +101,66 @@
 
 		</div><!--- div Carregando -->
 
-		<div class="modal fade" tabindex="-1" role="dialog" id="modal_config">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<form method="POST" name="form_config" class="form-horizontal" id="form_config">
-						<div class="modal-header">
-							<h5>Definições</h5>
-						</div>
-						<div class="modal-body">
-						<input type="hidden" id="ano"  value="">
-							<input type="hidden" action="inserir" name="action" value="inserir">
-						<div class="row">			
-									<div class="form-group col-sm-6">
-									<label for="dataIni" class="control-label">Data Inicial</label>
-										
-										<input required type="date" class="form-control dataIni date-format" id="dataIni" name="dataIni"
-											placeholder="00/00/000">
-									</div>
-									<div class="form-group col-sm-6">		
-										<label for=" horaIni" class="control-label">Hora Inicial</label>
-										<input required type="text" class="form-control horaIni" id="horaIni" name="horaIni"
-											placeholder="00:00:00">
-										
-									</div>
-						</div><!-- row config 1-->			
-									
-						<div class="row">
-									<div class="form-group col-sm-6">
-									<label for="dataFim" class="control-label">Data Final</label>
-										<input required type="date" class="form-control dataFim" id="dataFim" name="dataFim"
-											placeholder="00/00/000">
-									</div>
-									<div class="form-group col-sm-6">		
-										<label for=" horaFim" class="control-label">Hora Final</label>
-										<input required type="text" class="form-control horaFim" id="horaFim" name="horaFim"
-											placeholder="00:00:00">
-									</div>
-						</div><!-- div row config 2-->	
-							<div class="form-group">
-								<label for="cabecalho" class="control-label">Cabeçalho</label>
-								<div class="input-group">
-									<input required type="text" class="form-control" id="cabecalho" name="cabecalho"
-										placeholder="Informe o Cabeçalho">
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="descricao" class="control-label">Descrição</label>
-								<div class="input-group">
-									<textarea class="form-control" id="descricao" name="descricao" rows="2"></textarea>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="observacao" class="control-label">Observação</label>
-								<div class="input-group">
-									<textarea class="form-control" id="observacao" name="observacao" rows="2"></textarea>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								</label>
-								<div class="modal-footer">
-								<button id="atualizar_config_confirm" type="submit" class="btn btn-primary">Atualizar</button>
-									<button id="salvar_config_confirm" type="submit" class="btn btn-success">Salvar</button>
-									<button type="cancel" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-								</div>
+	<div class="modal fade" tabindex="-1" role="dialog" id="modal_config">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+                Definições
+				</div>
+			        <div class="modal-body">
+                        <form method="POST" name="form_config" class="form-horizontal" id="form_config">
+                            <input type="hidden" id="ano"  value="">
+                            <input type="hidden" action="inserir" name="action" value="inserir">
+                                <div class="row">			
+                                    <div class="form-group col-sm-6">
+                                        <label for="dataIni" class="control-label">Data Inicial</label>
+                                            <input required type="date" class="form-control dataIni date-format" id="dataIni" name="dataIni"
+                                                placeholder="00/00/000">
+                                    </div>
+                                    <div class="form-group col-sm-6">		
+                                        <label for=" horaIni" class="control-label">Hora Inicial</label>
+                                            <input required type="text" class="form-control horaIni" id="horaIni" name="horaIni"
+                                                placeholder="00:00:00">		
+                                    </div>
+                                </div><!-- row config 1-->							
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                    <label for="dataFim" class="control-label">Data Final</label>
+                                            <input required type="date" class="form-control dataFim" id="dataFim" name="dataFim"
+                                                placeholder="00/00/000">
+                                    </div>
+                                    <div class="form-group col-sm-6">		
+                                    <label for=" horaFim" class="control-label">Hora Final</label>
+                                            <input required type="text" class="form-control horaFim" id="horaFim" name="horaFim"
+                                                placeholder="00:00:00">
+                                    </div>
+                                </div><!-- div row config 2-->	
+                                    <div class="form-group">
+                                    <label for="cabecalho" class="control-label">Cabeçalho</label>
+                                        <input required type="text" class="form-control" id="cabecalho" name="cabecalho"
+                                            placeholder="Informe o Cabeçalho">		
+                                    </div>
+                                <div class="form-group">
+                                    <label for="descricao" class="control-label">Descrição</label>
+                                    <div class="input-group">
+                                        <textarea class="form-control" id="descricao" name="descricao" rows="2"></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="observacao" class="control-label">Observação</label>
+                                    <div class="input-group">
+                                        <textarea class="form-control" id="observacao" name="observacao" rows="2"></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    </label>
+                                    <div class="modal-footer">
+                                        <button id="atualizar_config_confirm" type="submit" class="btn btn-primary">Atualizar</button>
+                                        <button id="salvar_config_confirm" type="submit" class="btn btn-success">Salvar</button>
+                                        <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+								    </div>
 							</div>
 						</div>
 				</div>
@@ -179,8 +173,7 @@
 
 
 
-
-			<div class="modal fade" tabindex="-1" role="dialog" id="modal_series">
+		<div class="modal fade" tabindex="-1" role="dialog" id="modal_series">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<form  method="POST" name="form_series" class="form-horizontal" id="form_series">
@@ -210,7 +203,7 @@
 									</div>
 								</div>
 						
-								<div class="form-group col-sm-3">
+								<div class="form-group col-sm-4">
 							<label for="turno" class="control-label">Turno</label>
 								
 								<select class="form-control" name="turno" id="turno" >
@@ -277,6 +270,8 @@
 				</div>		
 			</div>
 			</div>				
+
+			
 
 
 			<!------ confirmar Exportação de TXT ------>

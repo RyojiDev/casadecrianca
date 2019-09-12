@@ -43,6 +43,19 @@
                 font-weight: bold;
             }
             
+            #tabela_alunos_c {
+                display: none;
+            }
+            
+            .btn-group,
+            .btn-group-vertical {
+                position: relative;
+                display: -ms-inline-flexbox;
+                display: inline-flex;
+                vertical-align: middle;
+                margin-left: -55px;
+            }
+            
             @media screen and (max-width: 500px) {
                 .texto-cpf {
                     right: 100px;

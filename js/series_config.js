@@ -2,8 +2,27 @@ $(document).ready(function() {
     // Assim que carregar a pagina, esconde botão atualizar do modal
     $("#atualizar_series_confirm").hide();
     // Metodo De Salvar Series
-
+    $("#tabs").tabs();
     listar_series();
+    // envia requisição no carregar da pagina, preencher options
+    $("#turno_aluno").html("");
+    action = "option";
+
+    $.ajax({
+        url: "option.php",
+        type: "POST",
+        data: {
+            action,
+
+        },
+        success: function(data) {
+            console.log(data);
+            $("#turno_aluno").html(data);
+        },
+        error: function() {
+
+        }
+    });
 
     $("#chamar_modal_series").click(function() {
 
@@ -214,4 +233,57 @@ $(document).ready(function() {
 
     });
 
+    $("#lista_alunos").submit(function() {
+        return false;
+    });
+
+
+
+
+
+
+    $("#botaoteste").click(function() {
+
+
+
+        $("#tabela_alunos_body").html("");
+        var action = $("#action_lista").val();
+        console.log(action);
+        serie_turno = $("#turno_aluno").val().split("");
+        console.log(serie_turno)
+        var id_s = serie_turno[0];
+        console.log(id_s);
+        var id_t = serie_turno[2];
+        console.log(id_t);
+        $.ajax({
+            url: "listarAlunos.php",
+            type: "POST",
+            data: {
+                action,
+                id_s,
+                id_t,
+            },
+            success: function(data) {
+                console.log(data);
+                if (action == "L" && data != "") {
+                    $("#tabela_alunos_c").hide();
+                    $("#tabela_alunos_l").show();
+                    $("#tabela_alunos_body").html(data);
+
+                } else if (action == "C" && data != "") {
+                    $("#tabela_alunos_l").hide();
+                    $("#tabela_alunos_c").show();
+                    $("#tabela_alunos_body_c").html(data);
+
+                } else if (data == "" || data == null || data == undefined) {
+                    $.growl.warning({ title: "Erro", message: "Ao atualizar a Série" });
+                }
+
+            },
+            error: function() {
+
+            }
+        });
+
+    })
 });

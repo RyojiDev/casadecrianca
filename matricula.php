@@ -173,7 +173,7 @@
 
                  <div class="form-group col-sm-4 col-lg-4">
                      <label for="Nome">Nome</label>
-                     <input class="form-control mr-2 " type="text" name="nome" id="nome" placeholder="Aluno(a)" required="required" disabled>
+                     <input class="form-control mr-2 nome " type="text" name="nome" id="nome" placeholder="Aluno(a)" required="required" disabled>
                  </div>
                  <!-- div nome -->
 

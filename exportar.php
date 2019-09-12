@@ -18,8 +18,8 @@ include './functions.php';
 
   $ano = 2019;
   $conn = getConnection();
-  $sql = "SELECT m.*, r.nome as r_nome, r.telefone, r.email  FROM casamatricula as m  INNER JOIN casaresponsavel as r on m.cpfresponsavel = r.cpf where m.ano = ".$ano." order by m.cpfresponsavel" ;
-
+  //$sql = "SELECT m.*, r.nome as r_nome, r.telefone, r.email  FROM casamatricula as m  INNER JOIN casaresponsavel as r on m.cpfresponsavel = r.cpf where m.ano = ".$ano." order by m.cpfresponsavel" ;
+  $sql = "SELECT m.*, r.nome as r_nome, r.telefone, r.email, s.vagas, s.matriculados FROM casamatricula as m INNER JOIN casaresponsavel as r on m.cpfresponsavel = r.cpf INNER JOIN casaserie as s on m.serie = s.serie and m.turno = s.turno where m.ano = ".$ano." order by m.cpfresponsavel";
   $result = $conn->query( $sql );
 
   $numRegistros =  $result->rowCount();
@@ -45,11 +45,13 @@ include './functions.php';
            . $campo["nome"] . ";"
            . formataData($campo["nascimento"]) . ";"
            . $campo["sexo"] . ";"
-           . turno($campo["turno"]) . ";"
            . $campo["serie"].";"
+           . $campo["turno"] . ";"
            . formataData($data) . ";"
            . $hora . ";"
            . $campo["vaga"].";"
+           . $campo["vagas"].";"
+           . $campo["matriculados"].";"
 
            ."\r\n";
 

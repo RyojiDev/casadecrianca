@@ -49,11 +49,21 @@ $(document).ready(function() {
         }
     });
 
+    $(".nome").blur(function(e) {
+        var ss = e.target.selectionStart;
+        var se = e.target.selectionEnd;
+        e.target.value = e.target.value.toUpperCase();
+        e.target.selectionStart = ss;
+        e.target.selectionEnd = se;
+    });
+
     $(".email").mask("A", {
         translation: {
             "A": { pattern: /[\w@\-.+]/, recursive: true }
         }
     });
+
+
 
     $("#modal_cadastro").submit(function(e) {
         e.preventDefault();

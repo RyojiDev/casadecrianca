@@ -113,7 +113,7 @@ if (isset($_POST) && !empty($_POST)){
 						<div class="form-group">
 							<label for="nome" class="control-label">Nome</label>
 							<div class="input-group">
-								<input required type="text" class="form-control" id="nome" name="nome"
+								<input required type="text" class="form-control nome" id="nome" name="nome"
 									placeholder="Digite o Nome do Responsável">
 							</div>
 						</div>
