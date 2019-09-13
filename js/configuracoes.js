@@ -49,6 +49,11 @@ $(document).ready(function() {
         }
     });
 
+    $('.horaIni').mask('00:00:00');
+
+    $('.horaFim').mask('00:00:00');
+
+
     $(".nome").blur(function(e) {
         var ss = e.target.selectionStart;
         var se = e.target.selectionEnd;

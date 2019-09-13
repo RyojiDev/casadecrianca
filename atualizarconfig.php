@@ -78,6 +78,10 @@ if($_POST["action"] == "buscarano")
             $descricao  = $_POST["descricao"];
             $observacao = $_POST["observacao"];
 
+
+			$hora_ini = str_replace(":", "", $hora_ini);
+			$hora_fim = str_replace(":", "", $hora_fim);
+			
 			$conn = getConnection();
 			$sql = "UPDATE casamatriculaconfig SET ano= :ano, data_ini= :data_ini, hora_ini= :hora_ini, data_fim= :data_fim, hora_fim= :hora_fim, cabecalho= :cabecalho, descricao= :descricao, observacao= :observacao WHERE ano = ".$ano.";";
 
