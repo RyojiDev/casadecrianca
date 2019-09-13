@@ -133,3 +133,15 @@
                     opacity: 1;
                 } */
             }
+            
+            @media (max-width: 1190px) {
+                .container-btn {
+                    /* background-color: black; */
+                    position: relative;
+                    right: 18px;
+                }
+                #card_config {
+                    /* background: black; */
+                    width: 800px;
+                }
+            }

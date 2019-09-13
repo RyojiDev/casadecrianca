@@ -24,16 +24,18 @@
 		
 <div class="container my-5">
 	<div class="row">
-		<div class="col-sm-6" style="margin: 0 auto;">
+		<div class="col-sm-12 col-md-11 col-lg-6" id="card_config" style="margin: 0 auto;">
 			<div class="card config w-70 h-100 bg-light text-black">
                 <div class="card-body">
-                    <div class="container" style="margin: 0 auto; width: 80%;">
-                        <div class="btn-group">
+					<div class="container-btn" style="margin: 0 auto; width: 80%;">
+					<div class="row">
+                        <div class="btn-group col-sm-3">
                         <span><p class="text-center"><button class="btn btn-success btn-sm btn-config" id="chamar_modal_config" data-toggle="modal" data-target="#modal_config">Definições</button></p></span>
                         <span><p class="text-center"><button class="btn btn-success btn-sm btn-config " id="chamar_modal_series" data-toggle="modal" data-target="#modal_series">Cadastro de Série</button></p></span>
                         <span><p class="text-center"><button class="btn btn-success btn-sm btn-config " id="buscar_alunos" >Buscar Alunos</button></p></span>
                         <span><p><button class="btn btn-warning btn-sm btn-config" id="export-txt" data-toggle="modal" data-target="#confirm-export"><i class="fas fa-file-export"></i>Exportar TXT</button></p></span>
-                        </div>
+						</div>
+						</div>
                     </div>	
                 </div>
 			</div>
